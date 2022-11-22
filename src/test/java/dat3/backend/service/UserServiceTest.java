@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class UserServiceTest {
 
-    public UserService userService;
+ /*   public UserService userService;
     public static UserWithRolesRepository userWithRolesRepository;
 
     @BeforeAll
