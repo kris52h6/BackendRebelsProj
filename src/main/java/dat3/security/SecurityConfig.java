@@ -107,7 +107,7 @@ public class SecurityConfig {
 
             //DET VI HAR LAVET
             .antMatchers("/api/login").permitAll()
-            .antMatchers("/api/users").permitAll()
+            .antMatchers("/api/users/*").permitAll()
 
     .anyRequest().authenticated());
 

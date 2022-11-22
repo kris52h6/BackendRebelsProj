@@ -44,7 +44,7 @@ public class SetupDevUsers implements ApplicationRunner {
         user1.addRole(Role.ADMIN);
         user2.addRole(Role.USER);
         user3.addRole(Role.ADMIN);
-        user5.addRole(Role.DOMMER);
+        user5.addRole(Role.REFEREE);
 
         //No Role assigned to user4
         userWithRolesRepository.save(user1);
@@ -54,7 +54,7 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user5);
 
         Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk");
-        referee1.addRole(Role.DOMMER);
+        referee1.addRole(Role.REFEREE);
         userWithRolesRepository.save(referee1);
     }
 }

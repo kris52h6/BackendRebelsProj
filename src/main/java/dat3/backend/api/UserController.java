@@ -20,4 +20,10 @@ public class UserController {
     public void createUser(@RequestBody UserWithRolesRequest userWithRolesRequest){
         userService.addUser(userWithRolesRequest);
     }
+
+    @PostMapping("/referee")
+    public void createReferee(@RequestBody UserWithRolesRequest userWithRolesRequest ){
+        userService.addReferee(userWithRolesRequest);
+
+    }
 }

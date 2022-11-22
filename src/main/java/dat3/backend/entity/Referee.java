@@ -31,10 +31,9 @@ public class Referee extends UserWithRoles {
     String bankInformation;
 
     public Referee(String username, String password, String email,
-                   String matches, String position, String license, String bankInformation )
+                    String position, String license, String bankInformation )
     {
         super(username, password, email);
-        this.matches = matches;
         this.position = position;
         this.license = license;
         this.bankInformation = bankInformation;
