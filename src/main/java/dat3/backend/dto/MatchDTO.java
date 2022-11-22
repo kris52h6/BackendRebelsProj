@@ -2,16 +2,14 @@ package dat3.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.backend.entity.Match;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@JsonInclude
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class MatchDTO
 {
     Integer id;
