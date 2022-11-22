@@ -86,6 +86,7 @@ public class SecurityConfig {
 
             .antMatchers("/").permitAll() //Allow the default index.html file
 
+
             //Next two lines only required if you plan to do the cookie/session-demo from within this project
             .antMatchers("/session-demo.html").permitAll()
             .antMatchers("/api/cookie/**").permitAll()
@@ -102,6 +103,12 @@ public class SecurityConfig {
 
            // Demonstrates another way to add roles to an endpoint
            // .antMatchers(HttpMethod.GET, "/api/demo/admin").hasAuthority("ADMIN")
+
+
+            //DET VI HAR LAVET
+            .antMatchers("/api/login").permitAll()
+            .antMatchers("/api/users").permitAll()
+
     .anyRequest().authenticated());
 
     return http.build();

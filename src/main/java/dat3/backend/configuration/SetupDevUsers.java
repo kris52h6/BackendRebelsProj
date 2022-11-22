@@ -1,5 +1,6 @@
 package dat3.backend.configuration;
 
+import dat3.backend.entity.Referee;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import org.springframework.boot.ApplicationArguments;
@@ -37,14 +38,23 @@ public class SetupDevUsers implements ApplicationRunner {
         UserWithRoles user2 = new UserWithRoles("user2", passwordUsedByAll, "user2@a.dk");
         UserWithRoles user3 = new UserWithRoles("user3", passwordUsedByAll, "user3@a.dk");
         UserWithRoles user4 = new UserWithRoles("user4", passwordUsedByAll, "user4@a.dk");
+        UserWithRoles user5 = new UserWithRoles("user5", passwordUsedByAll, "user5@a.dk");
+
         user1.addRole(Role.USER);
         user1.addRole(Role.ADMIN);
         user2.addRole(Role.USER);
         user3.addRole(Role.ADMIN);
+        user5.addRole(Role.DOMMER);
+
         //No Role assigned to user4
         userWithRolesRepository.save(user1);
         userWithRolesRepository.save(user2);
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
+        userWithRolesRepository.save(user5);
+
+        Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk");
+        referee1.addRole(Role.DOMMER);
+        userWithRolesRepository.save(referee1);
     }
 }
