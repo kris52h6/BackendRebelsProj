@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class Match
     int id;
 
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
-    List<SignUp> signUp;
+    List<SignUp> signUps = new ArrayList<>();
 
     @ManyToOne
     Team homeTeam;

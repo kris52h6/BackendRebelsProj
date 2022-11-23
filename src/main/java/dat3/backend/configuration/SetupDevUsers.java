@@ -84,8 +84,10 @@ public class SetupDevUsers implements ApplicationRunner {
         LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
         Match match1 = new Match(team1, team12, ldt1, "U13");
         Match match2 = new Match(team1, team2, ldt1, "U13");
+        Match match3 = new Match(team2, team1, ldt1, "U15");
         matchRepository.save(match1);
         matchRepository.save(match2);
+        matchRepository.save(match3);
 
 
         SignUp signUp1 = new SignUp(match1, referee1, "ref");

@@ -51,10 +51,6 @@ public class MatchService
     }
 
     public boolean addMatch(MatchDTO matchDTO) {
-        System.out.println(matchDTO.getHomeTeamId());
-        System.out.println(matchDTO.getAwayTeamId());
-        System.out.println(matchDTO.getDivision());
-
         try {
             Team homeTeam = teamRepository.findById(matchDTO.getHomeTeamId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Home team not found"));
