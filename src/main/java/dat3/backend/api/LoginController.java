@@ -23,14 +23,14 @@ public class LoginController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
-    public String getUserAdminInfo() {
-        return "You are logged in as admin";
+    public boolean getUserAdminInfo() {
+        return true;
     }
 
-    @PreAuthorize("hasAuthority('DOMMER')")
+    @PreAuthorize("hasAuthority('REFEREE')")
     @GetMapping("/dommer")
-    public String getDommerInfo() {
-        return "You are logged in as DOMMER";
+    public boolean getDommerInfo() {
+        return true;
     }
 
     @PreAuthorize("hasAuthority('User')")
