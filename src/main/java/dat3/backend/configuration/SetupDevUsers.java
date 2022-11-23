@@ -1,9 +1,7 @@
 package dat3.backend.configuration;
 
-import dat3.backend.entity.Match;
-import dat3.backend.entity.Referee;
-import dat3.backend.entity.SignUp;
-import dat3.backend.entity.Team;
+import dat3.backend.entity.*;
+import dat3.backend.repository.ClubRepository;
 import dat3.backend.repository.MatchRepository;
 import dat3.backend.repository.SignUpRepository;
 import dat3.backend.repository.TeamRepository;
@@ -23,13 +21,15 @@ public class SetupDevUsers implements ApplicationRunner {
     TeamRepository teamRepository;
     SignUpRepository signUpRepository;
     MatchRepository matchRepository;
+    ClubRepository clubRepository;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository, ClubRepository clubRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.teamRepository = teamRepository;
         this.signUpRepository = signUpRepository;
         this.matchRepository = matchRepository;
+        this.clubRepository = clubRepository;
         passwordUsedByAll = "test12";
     }
 
@@ -89,5 +89,15 @@ public class SetupDevUsers implements ApplicationRunner {
         SignUp signUp2 = new SignUp(match2, referee1, "ref");
         signUpRepository.save(signUp1);
         signUpRepository.save(signUp2);
+
+
+        Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
+        Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");
+
+        clubRepository.save(club1);
+        clubRepository.save(club2);
+
+
+
     }
 }

@@ -116,6 +116,7 @@ public class SecurityConfig {
             .antMatchers("/api/teams").permitAll()
             .antMatchers("/api/signups/*").permitAll()
             .antMatchers("/api/signups").permitAll()
+            .antMatchers("/api/clubs").permitAll()
 
     .anyRequest().authenticated());
 
