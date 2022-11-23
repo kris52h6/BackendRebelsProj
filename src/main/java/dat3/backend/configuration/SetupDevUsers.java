@@ -1,12 +1,7 @@
 package dat3.backend.configuration;
 
-import dat3.backend.entity.Match;
-import dat3.backend.entity.Referee;
-import dat3.backend.entity.SignUp;
-import dat3.backend.entity.Team;
-import dat3.backend.repository.MatchRepository;
-import dat3.backend.repository.SignUpRepository;
-import dat3.backend.repository.TeamRepository;
+import dat3.backend.entity.*;
+import dat3.backend.repository.*;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import org.springframework.boot.ApplicationArguments;
@@ -23,13 +18,19 @@ public class SetupDevUsers implements ApplicationRunner {
     TeamRepository teamRepository;
     SignUpRepository signUpRepository;
     MatchRepository matchRepository;
+    ClubRepository clubRepository;
+
+    DivisionRepository divisionRepository;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository, ClubRepository clubRepository, DivisionRepository divisionRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.teamRepository = teamRepository;
         this.signUpRepository = signUpRepository;
         this.matchRepository = matchRepository;
+        this.clubRepository = clubRepository;
+        this.divisionRepository = divisionRepository;
+
         passwordUsedByAll = "test12";
     }
 
@@ -91,5 +92,23 @@ public class SetupDevUsers implements ApplicationRunner {
         SignUp signUp2 = new SignUp(match2, referee1, "ref");
         signUpRepository.save(signUp1);
         signUpRepository.save(signUp2);
+
+
+        Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
+        Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");
+
+        clubRepository.save(club1);
+        clubRepository.save(club2);
+
+        Division division1 = new Division("U13",90,100, "LOL");
+        Division division2 = new Division("U15",90,100, "LOL");
+        Division division3 = new Division("U17",90,100, "LOL");
+        Division division4 = new Division("U19",90,100, "LOL");
+
+        divisionRepository.save(division1);
+        divisionRepository.save(division2);
+        divisionRepository.save(division3);
+        divisionRepository.save(division4);
+
     }
 }

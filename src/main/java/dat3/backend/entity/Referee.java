@@ -28,6 +28,9 @@ public class Referee extends UserWithRoles {
     @Column(name = "bankOplysninger")
     String bankInformation;
 
+    @ManyToOne
+    Club club;
+
     public Referee(String username, String password, String email,
                     String position, String license, String bankInformation )
     {
