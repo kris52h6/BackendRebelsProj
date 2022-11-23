@@ -49,11 +49,13 @@ public class SetupDevUsers implements ApplicationRunner {
         System.out.println("******* REMOVE THIS BEFORE DEPLOYMENT, AND SETUP DEFAULT USERS DIRECTLY  *****");
         System.out.println("**** ** ON YOUR REMOTE DATABASE                 ******************************");
         System.out.println("******************************************************************************");
-        UserWithRoles user1 = new UserWithRoles("user1", passwordUsedByAll, "user1@a.dk");
-        UserWithRoles user2 = new UserWithRoles("user2", passwordUsedByAll, "user2@a.dk");
-        UserWithRoles user3 = new UserWithRoles("user3", passwordUsedByAll, "user3@a.dk");
-        UserWithRoles user4 = new UserWithRoles("user4", passwordUsedByAll, "user4@a.dk");
-        UserWithRoles user5 = new UserWithRoles("user5", passwordUsedByAll, "user5@a.dk");
+        UserWithRoles user1 = new UserWithRoles("user1",  passwordUsedByAll, "user1@a.dk", "firstname1", "lastname1");
+        UserWithRoles user2 = new UserWithRoles("user2",  passwordUsedByAll, "user2@a.dk", "firstname2", "lastname2");
+        UserWithRoles user3 = new UserWithRoles("user3",  passwordUsedByAll, "user3@a.dk", "firstname3", "lastname3");
+        UserWithRoles user4 = new UserWithRoles("user4",  passwordUsedByAll, "user4@a.dk", "firstname4", "lastname4");
+        UserWithRoles user5 = new UserWithRoles("user5",  passwordUsedByAll, "user5@a.dk", "firstname5", "lastname5");
+
+
 
         user1.addRole(Role.USER);
         user1.addRole(Role.ADMIN);
@@ -68,7 +70,7 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user4);
         userWithRolesRepository.save(user5);
 
-        Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk");
+        Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk","firstname10", "lastname10");
         referee1.addRole(Role.REFEREE);
         userWithRolesRepository.save(referee1);
 

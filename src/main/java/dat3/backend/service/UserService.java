@@ -1,6 +1,7 @@
 package dat3.backend.service;
 
 
+import dat3.backend.dto.RefereeDTO;
 import dat3.backend.entity.Referee;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
@@ -8,6 +9,8 @@ import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -20,18 +23,40 @@ public class UserService {
 
     public void addUser(UserWithRolesRequest userWithRolesRequest){
 
-        UserWithRoles newUser = new UserWithRoles(userWithRolesRequest.getUsername(), userWithRolesRequest.getPassword(), userWithRolesRequest.getEmail());
+        UserWithRoles newUser = new UserWithRoles(userWithRolesRequest.getUsername(), userWithRolesRequest.getPassword(), userWithRolesRequest.getEmail(), userWithRolesRequest.getFirstname(), userWithRolesRequest.getLastname());
         newUser.addRole(Role.USER);
         userWithRolesRepository.save(newUser);
 
     }
 
-    public void addReferee(UserWithRolesRequest userWithRolesRequest) {
-        Referee newUser = new Referee(userWithRolesRequest.getUsername(), userWithRolesRequest.getPassword(), userWithRolesRequest.getEmail(),
-                userWithRolesRequest.getPosition(), userWithRolesRequest.getLicense(), userWithRolesRequest.getBankInformation());
+    public void addReferee(RefereeDTO refereeDTO) {
+        Referee newUser = new Referee(refereeDTO.getUsername(),
+                refereeDTO.getPassword(),
+                refereeDTO.getEmail(),
+                refereeDTO.getFirstname(),
+                refereeDTO.getLastname(),
+                refereeDTO.getPosition(),
+                refereeDTO.getBankInformation());
+        newUser.setLicense(refereeDTO.getLicense());
+
+
+
+
         newUser.addRole(Role.REFEREE);
         newUser.addRole(Role.USER);
         userWithRolesRepository.save(newUser);
 
     }
+
+    public List<UserWithRolesRequest> getAllUsers(){
+        return userWithRolesRepository.findAll().stream().map(user -> new UserWithRolesRequest(user)).toList();
+    }
+
+
+    /* EVENTUELT CAST TIL REFEREE OBJECT
+    public List<RefereeDTO> getAllReferees(){
+        return userWithRolesRepository.findAll().stream().map(user -> new RefereeDTO(user)).toList();
+    }
+
+     */
 }

@@ -23,7 +23,7 @@ public class Referee extends UserWithRoles {
 
     String position;
 
-    String license;
+    License license;
 
     @Column(name = "bankOplysninger")
     String bankInformation;
@@ -31,17 +31,26 @@ public class Referee extends UserWithRoles {
     @ManyToOne
     Club club;
 
-    public Referee(String username, String password, String email,
-                    String position, String license, String bankInformation )
+    public Referee(String username, String password, String email, String firstname, String lastname,
+                    String position, String bankInformation )
     {
-        super(username, password, email);
+        super(username, password, email, firstname, lastname);
         this.position = position;
-        this.license = license;
         this.bankInformation = bankInformation;
 
     }
 
-    public Referee(String username, String password, String email){
-        super(username,password, email);
+    public Referee(String username, String password, String email, String firstname, String lastname){
+        super(username,password, email, firstname, lastname);
+    }
+
+    public void setLicense(String license){
+        switch (license) {
+            case "A" -> this.license = License.A;
+            case "B" -> this.license = License.B;
+            case "C" -> this.license = License.C;
+            case "D" -> this.license = License.D;
+            case "I" -> this.license = License.I;
+        }
     }
 }

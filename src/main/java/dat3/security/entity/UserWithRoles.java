@@ -41,6 +41,13 @@ public class UserWithRoles implements UserDetails {
     @Column(nullable = false, length = 60)
     String password;
 
+    @Column(nullable = false)
+    String firstname;
+
+    @Column(nullable = false)
+    String lastname;
+
+
     private boolean enabled= true;
 
     @CreationTimestamp
@@ -65,10 +72,12 @@ public class UserWithRoles implements UserDetails {
         this.email = body.getEmail();
     }
 
-    public UserWithRoles(String user, String password, String email){
+    public UserWithRoles(String user, String password, String email, String firstname, String lastname) {
         this.username = user;
         setPassword(password);
         this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     public void setPassword(String pw){

@@ -1,9 +1,12 @@
 package dat3.backend.api;
 
+import dat3.backend.dto.RefereeDTO;
 import dat3.backend.service.UserService;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -22,8 +25,12 @@ public class UserController {
     }
 
     @PostMapping("/referee")
-    public void createReferee(@RequestBody UserWithRolesRequest userWithRolesRequest ){
-        userService.addReferee(userWithRolesRequest);
+    public void createReferee(@RequestBody RefereeDTO refereeDTO ){
+        userService.addReferee(refereeDTO);
+    }
 
+    @GetMapping()
+    public List<UserWithRolesRequest> getAllUsers(){
+        return userService.getAllUsers();
     }
 }
