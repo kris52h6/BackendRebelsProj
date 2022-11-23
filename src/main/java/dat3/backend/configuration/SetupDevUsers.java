@@ -1,6 +1,12 @@
 package dat3.backend.configuration;
 
+import dat3.backend.entity.Match;
 import dat3.backend.entity.Referee;
+import dat3.backend.entity.SignUp;
+import dat3.backend.entity.Team;
+import dat3.backend.repository.MatchRepository;
+import dat3.backend.repository.SignUpRepository;
+import dat3.backend.repository.TeamRepository;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import org.springframework.boot.ApplicationArguments;
@@ -8,14 +14,22 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 import dat3.security.repository.UserWithRolesRepository;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class SetupDevUsers implements ApplicationRunner {
 
     UserWithRolesRepository userWithRolesRepository;
+    TeamRepository teamRepository;
+    SignUpRepository signUpRepository;
+    MatchRepository matchRepository;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
+        this.teamRepository = teamRepository;
+        this.signUpRepository = signUpRepository;
+        this.matchRepository = matchRepository;
         passwordUsedByAll = "test12";
     }
 
@@ -56,5 +70,18 @@ public class SetupDevUsers implements ApplicationRunner {
         Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk");
         referee1.addRole(Role.REFEREE);
         userWithRolesRepository.save(referee1);
+
+        Team team1 = new Team("Herlev Rebels", "U13");
+        Team team12 = new Team("Søllerød Golddiggers", "U13");
+        teamRepository.save(team12);
+        teamRepository.save(team1);
+
+        LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
+        Match match1 = new Match(team1, team12, ldt1, "U13");
+        matchRepository.save(match1);
+
+
+        SignUp signUp1 = new SignUp(match1, referee1, "ref");
+        signUpRepository.save(signUp1);
     }
 }

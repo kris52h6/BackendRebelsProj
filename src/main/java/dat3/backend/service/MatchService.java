@@ -19,7 +19,6 @@ public class MatchService
 
     public MatchDTO getMatchById(int id){
         Match foundMatch = matchRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found"));
-        System.out.println(foundMatch.toString());
         return new MatchDTO(foundMatch, false);
     }
 }

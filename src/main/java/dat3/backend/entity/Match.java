@@ -20,15 +20,17 @@ public class Match
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String signUp;
-    String homeTeam;
-    String awayTeam;
+    @OneToMany
+    List<SignUp> signUp;
+    @ManyToOne
+    Team homeTeam;
+    @ManyToOne
+    Team awayTeam;
     LocalDateTime startTime;
     String division;
 
-    public Match(String signUp, String homeTeam, String awayTeam, LocalDateTime startTime, String division)
+    public Match(Team homeTeam, Team awayTeam, LocalDateTime startTime, String division)
     {
-        this.signUp = signUp;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.startTime = startTime;

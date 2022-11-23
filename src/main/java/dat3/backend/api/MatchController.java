@@ -4,9 +4,9 @@ import dat3.backend.dto.MatchDTO;
 import dat3.backend.service.MatchService;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("api/match")
 @RestController
 @CrossOrigin
+@RequestMapping("api/matches")
 public class MatchController
 {
     MatchService matchService;
@@ -17,9 +17,9 @@ public class MatchController
     }
 
     @GetMapping("/{matchId}")
-    MatchDTO getMatch(@PathVariable int matchId){
-        MatchDTO test = matchService.getMatchById(matchId);
-        System.out.println(test);
-        return test;
+    MatchDTO getMatchById(@PathVariable int matchId) throws Exception
+    {
+        return matchService.getMatchById(matchId);
     }
 }
+

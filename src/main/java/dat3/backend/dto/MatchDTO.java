@@ -5,6 +5,8 @@ import dat3.backend.entity.Match;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,17 +15,17 @@ import java.time.LocalDateTime;
 public class MatchDTO
 {
     Integer id;
-    String signUp;
-    String homeTeam;
-    String awayTeam;
+    List<Integer> signUpIds = new ArrayList<>();
+    int homeTeamId;
+    int awayTeamId;
     LocalDateTime startTime;
     String division;
 
     public MatchDTO(Match match,boolean includeAll)
     {
-        this.signUp = match.getSignUp();
-        this.homeTeam = match.getHomeTeam();
-        this.awayTeam = match.getAwayTeam();
+        this.signUpIds = match.getSignUp().stream().map(signUp -> signUp.getId()).toList();
+        this.homeTeamId = match.getHomeTeam().getId();
+        this.awayTeamId = match.getAwayTeam().getId();
         this.startTime = match.getStartTime();
         this.division = match.getDivision();
         if (includeAll){
