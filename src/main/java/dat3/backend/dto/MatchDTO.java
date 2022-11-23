@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class MatchDTO
 {
     Integer id;
-    List<Integer> signUpIds;
+    List<Integer> signUpIds = new ArrayList<>();
     int homeTeamId;
     int awayTeamId;
     LocalDateTime startTime;
@@ -34,7 +34,7 @@ public class MatchDTO
 
     public MatchDTO(Match match,boolean includeAll)
     {
-        this.signUpIds = match.getSignUp().stream().map(signUp -> signUp.getId()).collect(Collectors.toList());
+        this.signUpIds = match.getSignUps().stream().map(signUp -> signUp.getId()).collect(Collectors.toList());
         this.homeTeamId = match.getHomeTeam().getId();
         this.awayTeamId = match.getAwayTeam().getId();
         this.startTime = match.getStartTime();
