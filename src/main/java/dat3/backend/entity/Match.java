@@ -20,12 +20,16 @@ public class Match
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @OneToMany
+
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     List<SignUp> signUp;
+
     @ManyToOne
     Team homeTeam;
+
     @ManyToOne
     Team awayTeam;
+
     LocalDateTime startTime;
     String division;
 

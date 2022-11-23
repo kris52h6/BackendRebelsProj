@@ -72,16 +72,22 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(referee1);
 
         Team team1 = new Team("Herlev Rebels", "U13");
+        Team team2 = new Team("Copenhagen Towers", "U13");
         Team team12 = new Team("Søllerød Golddiggers", "U13");
-        teamRepository.save(team12);
         teamRepository.save(team1);
+        teamRepository.save(team2);
+        teamRepository.save(team12);
 
         LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
         Match match1 = new Match(team1, team12, ldt1, "U13");
+        Match match2 = new Match(team1, team2, ldt1, "U13");
         matchRepository.save(match1);
+        matchRepository.save(match2);
 
 
         SignUp signUp1 = new SignUp(match1, referee1, "ref");
+        SignUp signUp2 = new SignUp(match2, referee1, "ref");
         signUpRepository.save(signUp1);
+        signUpRepository.save(signUp2);
     }
 }

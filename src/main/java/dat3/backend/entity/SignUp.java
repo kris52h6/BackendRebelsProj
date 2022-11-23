@@ -17,10 +17,13 @@ public class SignUp
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     int id;
+
     @ManyToOne
     Match match;
+
     @ManyToOne
     Referee referee;
+    
     String position;
 
     public SignUp(Match match, Referee referee, String position)
