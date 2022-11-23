@@ -1,10 +1,7 @@
 package dat3.backend.configuration;
 
 import dat3.backend.entity.*;
-import dat3.backend.repository.ClubRepository;
-import dat3.backend.repository.MatchRepository;
-import dat3.backend.repository.SignUpRepository;
-import dat3.backend.repository.TeamRepository;
+import dat3.backend.repository.*;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import org.springframework.boot.ApplicationArguments;
@@ -22,14 +19,18 @@ public class SetupDevUsers implements ApplicationRunner {
     SignUpRepository signUpRepository;
     MatchRepository matchRepository;
     ClubRepository clubRepository;
+
+    DivisionRepository divisionRepository;
     String passwordUsedByAll;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository, ClubRepository clubRepository) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, MatchRepository matchRepository, ClubRepository clubRepository, DivisionRepository divisionRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.teamRepository = teamRepository;
         this.signUpRepository = signUpRepository;
         this.matchRepository = matchRepository;
         this.clubRepository = clubRepository;
+        this.divisionRepository = divisionRepository;
+
         passwordUsedByAll = "test12";
     }
 
@@ -97,7 +98,15 @@ public class SetupDevUsers implements ApplicationRunner {
         clubRepository.save(club1);
         clubRepository.save(club2);
 
+        Division division1 = new Division("U13",90,100, "LOL");
+        Division division2 = new Division("U15",90,100, "LOL");
+        Division division3 = new Division("U17",90,100, "LOL");
+        Division division4 = new Division("U19",90,100, "LOL");
 
+        divisionRepository.save(division1);
+        divisionRepository.save(division2);
+        divisionRepository.save(division3);
+        divisionRepository.save(division4);
 
     }
 }
