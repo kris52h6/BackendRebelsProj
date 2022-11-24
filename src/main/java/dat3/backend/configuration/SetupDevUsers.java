@@ -71,9 +71,13 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user5);
 
         Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk","firstname10", "lastname10");
+        Referee referee2 = new Referee("referee2", passwordUsedByAll, "ref2@a.dk","firstname2", "lastname10");
         referee1.addRole(Role.REFEREE);
+        referee2.addRole(Role.REFEREE);
         referee1.setLicense("A");
+        referee2.setLicense("A");
         userWithRolesRepository.save(referee1);
+        userWithRolesRepository.save(referee2);
 
         Team team1 = new Team("Herlev Rebels", "U13");
         Team team2 = new Team("Copenhagen Towers", "U13");
@@ -93,8 +97,10 @@ public class SetupDevUsers implements ApplicationRunner {
 
         SignUp signUp1 = new SignUp(match1, referee1, "ref");
         SignUp signUp2 = new SignUp(match2, referee1, "ref");
+        SignUp signUp3 = new SignUp(match1, referee2, "ref");
         signUpRepository.save(signUp1);
         signUpRepository.save(signUp2);
+        signUpRepository.save(signUp3);
 
 
         Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");

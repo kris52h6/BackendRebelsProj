@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class SignUpService
 {
@@ -20,5 +22,10 @@ public class SignUpService
     public SignUpDTO getSignUpById(int id){
         SignUp foundId = signUpRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Team not found"));
         return new SignUpDTO(foundId, false);
+    }
+
+    public List<SignUpDTO> getAllSignUpsByMatchId(int matchId){
+        List<SignUp> foundSignUps = signUpRepository.findAllByMatch_Id(matchId);
+        return foundSignUps.stream().map(s -> new SignUpDTO(s,true)).toList();
     }
 }
