@@ -90,4 +90,11 @@ public class UserService {
         UsernameDTO usernameDTO = new UsernameDTO(username);
         return usernameDTO;
     }
+
+    public void editRefereePassword(String username, RefereeDTO refereeDTO) {
+        Referee referee = refereeRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
+        referee.setPassword(refereeDTO.getPassword());
+        refereeRepository.save(referee);
+    }
 }

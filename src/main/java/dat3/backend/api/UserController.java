@@ -49,4 +49,9 @@ public class UserController {
     public RefereeDTO getReferee(Principal p){
         return userService.getReferee(p.getName());
     }
+
+    @PatchMapping("/refereePassword")
+    public void editRefereePassword(Principal p, @RequestBody RefereeDTO refereeDTO) {
+        userService.editRefereePassword(p.getName(), refereeDTO);
+    }
 }

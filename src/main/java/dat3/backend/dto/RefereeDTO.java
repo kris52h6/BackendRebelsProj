@@ -2,6 +2,7 @@ package dat3.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.backend.entity.Referee;
+import dat3.security.entity.UserWithRoles;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
