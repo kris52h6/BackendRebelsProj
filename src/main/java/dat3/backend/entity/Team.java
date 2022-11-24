@@ -19,9 +19,11 @@ public class Team
     @OneToMany
     List<Match> matches;
     String name;
-    String division;
 
-    public Team(String name, String division)
+    @ManyToOne
+    Division division;
+
+    public Team(String name, Division division)
     {
         this.name = name;
         this.division = division;

@@ -21,14 +21,14 @@ public class MatchDTO
     int homeTeamId;
     int awayTeamId;
     LocalDateTime startTime;
-    String division;
+    String divisionName;
 
-    public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam, String division) {
+    public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam) {
         return new Match(
                 homeTeam,
                 awayTeam,
                 matchDTO.getStartTime(),
-                division
+                homeTeam.getDivision()
         );
     }
 
@@ -38,7 +38,7 @@ public class MatchDTO
         this.homeTeamId = match.getHomeTeam().getId();
         this.awayTeamId = match.getAwayTeam().getId();
         this.startTime = match.getStartTime();
-        this.division = match.getDivision();
+        this.divisionName = match.getDivision().getName();
         if (includeAll){
             this.id = match.getId();
         }

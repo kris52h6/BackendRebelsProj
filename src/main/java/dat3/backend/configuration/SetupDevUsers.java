@@ -79,17 +79,27 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(referee1);
         userWithRolesRepository.save(referee2);
 
-        Team team1 = new Team("Herlev Rebels", "U13");
-        Team team2 = new Team("Copenhagen Towers", "U13");
-        Team team12 = new Team("Søllerød Golddiggers", "U13");
+        Division division1 = new Division("U13",90,100, "LOL");
+        Division division2 = new Division("U15",90,100, "LOL");
+        Division division3 = new Division("U17",90,100, "LOL");
+        Division division4 = new Division("U19",90,100, "LOL");
+
+        divisionRepository.save(division1);
+        divisionRepository.save(division2);
+        divisionRepository.save(division3);
+        divisionRepository.save(division4);
+
+        Team team1 = new Team("Herlev Rebels", division1);
+        Team team2 = new Team("Copenhagen Towers", division1);
+        Team team12 = new Team("Søllerød Golddiggers", division1);
         teamRepository.save(team1);
         teamRepository.save(team2);
         teamRepository.save(team12);
 
         LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
-        Match match1 = new Match(team1, team12, ldt1, "U13");
-        Match match2 = new Match(team1, team2, ldt1, "U13");
-        Match match3 = new Match(team2, team1, ldt1, "U15");
+        Match match1 = new Match(team1, team12, ldt1, division1);
+        Match match2 = new Match(team1, team2, ldt1, division1);
+        Match match3 = new Match(team2, team1, ldt1, division1);
         matchRepository.save(match1);
         matchRepository.save(match2);
         matchRepository.save(match3);
@@ -109,15 +119,7 @@ public class SetupDevUsers implements ApplicationRunner {
         clubRepository.save(club1);
         clubRepository.save(club2);
 
-        Division division1 = new Division("U13",90,100, "LOL");
-        Division division2 = new Division("U15",90,100, "LOL");
-        Division division3 = new Division("U17",90,100, "LOL");
-        Division division4 = new Division("U19",90,100, "LOL");
 
-        divisionRepository.save(division1);
-        divisionRepository.save(division2);
-        divisionRepository.save(division3);
-        divisionRepository.save(division4);
 
     }
 }

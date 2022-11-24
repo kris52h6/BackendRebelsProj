@@ -14,12 +14,12 @@ public class TeamDTO
 {
     Integer id;
     String name;
-    String division;
+    String divisionName;
 
     public TeamDTO(Team t, boolean includeAll)
     {
         this.name = t.getName();
-        this.division = t.getDivision();
+        this.divisionName = t.getDivision().getName();
         if (includeAll){
             this.id = t.getId();
         }

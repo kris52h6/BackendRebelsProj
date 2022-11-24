@@ -56,9 +56,8 @@ public class MatchService
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Home team not found"));
             Team awayTeam = teamRepository.findById(matchDTO.getAwayTeamId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Away team not found"));
-            String division = matchDTO.getDivision();
 
-            Match createNewMatch = matchDTO.getMatchEntity(matchDTO, homeTeam, awayTeam, division);
+            Match createNewMatch = matchDTO.getMatchEntity(matchDTO, homeTeam, awayTeam);
             matchRepository.save(createNewMatch);
             return true;
         } catch (Exception e) {

@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,4 +22,15 @@ public class Division {
     int matchTime;
     int commission;
     String license;
+    @OneToMany
+    List<Team> teams;
+    @OneToMany
+    List<Match> matches;
+
+    public Division(String name, int matchTime, int commission, String license) {
+        this.name = name;
+        this.matchTime = matchTime;
+        this.commission = commission;
+        this.license = license;
+    }
 }

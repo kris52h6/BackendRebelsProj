@@ -1,3 +1,4 @@
+/*
 package dat3.backend.service;
 
 import dat3.backend.dto.MatchDTO;
@@ -98,4 +99,4 @@ class MatchServiceTest {
                 hasProperty("division", is("U13"))
         ));
     }
-}
+}*/

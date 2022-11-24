@@ -32,9 +32,11 @@ public class Match
     Team awayTeam;
 
     LocalDateTime startTime;
-    String division;
 
-    public Match(Team homeTeam, Team awayTeam, LocalDateTime startTime, String division)
+    @ManyToOne
+    Division division;
+
+    public Match(Team homeTeam, Team awayTeam, LocalDateTime startTime, Division division)
     {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
