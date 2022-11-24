@@ -19,6 +19,14 @@ public class SignUpDTO
     String refereeUsername;
     String position;
 
+    public static SignUp getSignUpEntiy(Match match, Referee referee, String position) {
+        return new SignUp(
+                match,
+                referee,
+                position
+        );
+    }
+
     public SignUpDTO(SignUp s, boolean includeAll)
     {
         this.matchId = s.getMatch().getId();

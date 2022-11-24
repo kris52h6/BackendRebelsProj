@@ -27,4 +27,9 @@ public class SignUpController
     public List<SignUpDTO> getAllSignupsByMatchId(@PathVariable int matchId){
         return signUpService.getAllSignUpsByMatchId(matchId);
     }
+
+    @PostMapping()
+    public boolean addSignUp(@RequestBody SignUpDTO signUpDTO) {
+        return signUpService.addSignUp(signUpDTO);
+    }
 }

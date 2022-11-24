@@ -97,7 +97,7 @@ public class SecurityConfig {
             //necessary to allow for "nice" JSON Errors
             .antMatchers("/error").permitAll()
 
-            //.antMatchers("/", "/**").permitAll()
+            //  .antMatchers("/", "/**").permitAll()
 
            // .antMatchers(HttpMethod.GET,"/api/demo/anonymous").permitAll());
 
@@ -118,7 +118,7 @@ public class SecurityConfig {
             .antMatchers("/api/matches").permitAll()
             .antMatchers("/api/teams/*").permitAll()
             .antMatchers("/api/teams").permitAll()
-            .antMatchers("/api/signups/*").permitAll()
+            .antMatchers("/api/signups/**").permitAll()
             .antMatchers("/api/signups").permitAll()
             .antMatchers("/api/clubs").permitAll()
             .antMatchers("/api/divisions").permitAll()
