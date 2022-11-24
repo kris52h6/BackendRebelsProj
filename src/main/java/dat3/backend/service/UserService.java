@@ -66,7 +66,16 @@ public class UserService {
 
 
     public void editReferee(String username, RefereeDTO refereeDTO) {
+        Referee refereeToEdit = refereeRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
 
+        refereeToEdit.setFirstname(refereeDTO.getFirstname());
+        refereeToEdit.setLastname(refereeDTO.getLastname());
+        refereeToEdit.setEmail(refereeDTO.getEmail());
+        refereeToEdit.setBankInformation(refereeDTO.getBankInformation());
+        refereeToEdit.setLicense(refereeDTO.getLicense());
+
+        refereeRepository.save(refereeToEdit);
     }
 
     public RefereeDTO getReferee(String username) {

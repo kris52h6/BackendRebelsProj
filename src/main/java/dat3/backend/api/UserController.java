@@ -40,7 +40,7 @@ public class UserController {
         return userService.getAllReferees();
     }
 
-    @PatchMapping("/editReferees")
+    @PatchMapping("/referee")
     public void editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
         userService.editReferee(p.getName(), refereeDTO);
     }
