@@ -6,6 +6,7 @@ import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -37,5 +38,15 @@ public class UserController {
     @GetMapping("/referees")
     public List<RefereeDTO> getAllReferees(){
         return userService.getAllReferees();
+    }
+
+    @PatchMapping("/editReferees")
+    public void editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
+        userService.editReferee(p.getName(), refereeDTO);
+    }
+
+    @GetMapping("/referee")
+    public RefereeDTO getReferee(Principal p){
+        return userService.getReferee(p.getName());
     }
 }

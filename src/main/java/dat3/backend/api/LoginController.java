@@ -1,6 +1,9 @@
 package dat3.backend.api;
 
 
+import dat3.backend.dto.UsernameDTO;
+import dat3.backend.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +18,11 @@ import java.security.Principal;
 @CrossOrigin
 @RequestMapping("/api/login")
 public class LoginController {
+    UserService userService;
+
+    public LoginController(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping
     public String getInfoNotLoggedIn() {
@@ -41,9 +49,11 @@ public class LoginController {
 
 
     @GetMapping("/user-fromtoken")
-    public String getUserInfo(Principal p) {
-        String info = "Current user is "+p.getName();
-        return info;
+    public UsernameDTO getUserInfo(Principal p) {
+        String username = p.getName();
+        UsernameDTO usernameDTO = userService.getUserNameDTO(username);
+
+        return usernameDTO;
     }
 
 }
