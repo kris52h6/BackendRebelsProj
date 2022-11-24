@@ -4,6 +4,7 @@ import dat3.backend.dto.RefereeDTO;
 import dat3.backend.service.UserService;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -46,12 +47,18 @@ public class UserController {
     }
 
     @GetMapping("/referee")
-    public RefereeDTO getReferee(Principal p){
+        public RefereeDTO getReferee(Principal p){
         return userService.getReferee(p.getName());
     }
 
     @PatchMapping("/refereePassword")
     public void editRefereePassword(Principal p, @RequestBody RefereeDTO refereeDTO) {
         userService.editRefereePassword(p.getName(), refereeDTO);
+    }
+
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PatchMapping("/makeAdmin/{username}")
+    public void makeAdmin(@PathVariable String username){
+        userService.makeAdmin(username);
     }
 }

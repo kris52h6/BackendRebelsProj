@@ -97,4 +97,11 @@ public class UserService {
         referee.setPassword(refereeDTO.getPassword());
         refereeRepository.save(referee);
     }
+
+    public void makeAdmin(String username) {
+        Referee referee = refereeRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
+        referee.addRole(Role.ADMIN);
+        refereeRepository.save(referee);
+    }
 }
