@@ -110,6 +110,7 @@ public class SecurityConfig {
 
             .antMatchers("/api/users").permitAll()
             .antMatchers("/api/users/*").permitAll()
+            .antMatchers("/api/users/referees").permitAll()
 
             .antMatchers("/api/matches/*").permitAll()
             .antMatchers("/api/matches").permitAll()

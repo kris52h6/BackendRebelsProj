@@ -33,4 +33,9 @@ public class UserController {
     public List<UserWithRolesRequest> getAllUsers(){
         return userService.getAllUsers();
     }
+
+    @GetMapping("/referees")
+    public List<RefereeDTO> getAllReferees(){
+        return userService.getAllReferees();
+    }
 }

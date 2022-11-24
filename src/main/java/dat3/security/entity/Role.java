@@ -7,5 +7,6 @@ public enum Role {
     USER,
     ADMIN,
 
-    DOMMER, REFEREE
+    DOMMER,
+    REFEREE
 }

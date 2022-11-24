@@ -72,6 +72,7 @@ public class SetupDevUsers implements ApplicationRunner {
 
         Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk","firstname10", "lastname10");
         referee1.addRole(Role.REFEREE);
+        referee1.setLicense("A");
         userWithRolesRepository.save(referee1);
 
         Team team1 = new Team("Herlev Rebels", "U13");

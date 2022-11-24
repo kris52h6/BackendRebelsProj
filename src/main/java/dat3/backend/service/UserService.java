@@ -7,6 +7,7 @@ import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
+import dat3.security.repository.RefereeRepository;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,11 @@ import java.util.List;
 public class UserService {
 
     UserWithRolesRepository userWithRolesRepository;
+    RefereeRepository refereeRepository;
 
-    public UserService(UserWithRolesRepository userWithRolesRepository){
+    public UserService(UserWithRolesRepository userWithRolesRepository, RefereeRepository refereeRepository){
         this.userWithRolesRepository = userWithRolesRepository;
+        this.refereeRepository = refereeRepository;
     }
 
     public void addUser(UserWithRolesRequest userWithRolesRequest){
@@ -53,10 +56,10 @@ public class UserService {
     }
 
 
-    /* EVENTUELT CAST TIL REFEREE OBJECT
+    // EVENTUELT CAST TIL REFEREE OBJECT
     public List<RefereeDTO> getAllReferees(){
-        return userWithRolesRepository.findAll().stream().map(user -> new RefereeDTO(user)).toList();
+        return refereeRepository.findAll().stream().map(ref -> new RefereeDTO(ref)).toList();
     }
 
-     */
+
 }
