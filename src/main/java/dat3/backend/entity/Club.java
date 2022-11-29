@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Club {
     @Id
+    @Column(unique = true)
     String name;
     String address;
     String email;
@@ -26,7 +28,7 @@ public class Club {
     List<Referee> referees;
 
     public Club(String name, String address, String email) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.address = address;
         this.email = email;
     }

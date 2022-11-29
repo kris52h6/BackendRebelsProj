@@ -1,11 +1,9 @@
 package dat3.backend.api;
 
 import dat3.backend.dto.ClubDTO;
+import dat3.backend.dto.MatchDTO;
 import dat3.backend.service.ClubService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,12 @@ public class ClubController {
     public List<ClubDTO> getAllClubs(){
         return clubService.getAllClubs();
     }
+
+    @PostMapping()
+    public void addClub(@RequestBody ClubDTO clubDTO){
+        clubService.addClub(clubDTO);
+    }
+
 
 
 }
