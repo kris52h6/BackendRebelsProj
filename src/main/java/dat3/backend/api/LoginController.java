@@ -36,15 +36,15 @@ public class LoginController {
     }
 
     @PreAuthorize("hasAuthority('REFEREE')")
-    @GetMapping("/dommer")
-    public boolean getDommerInfo() {
+    @GetMapping("/referee")
+    public boolean getRefereeInfo() {
         return true;
     }
 
     @PreAuthorize("hasAuthority('User')")
     @GetMapping("/user")
-    public String getUserInfo() {
-        return "You are logged in as USER";
+    public boolean getUserInfo() {
+        return true;
     }
 
 
