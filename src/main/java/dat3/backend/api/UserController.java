@@ -36,6 +36,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/referees")
     public List<RefereeDTO> getAllReferees(){
         return userService.getAllReferees();

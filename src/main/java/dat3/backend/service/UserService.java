@@ -101,7 +101,9 @@ public class UserService {
     public void makeAdmin(String username) {
         Referee referee = refereeRepository.findById(username).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
-        referee.addRole(Role.ADMIN);
-        refereeRepository.save(referee);
+        if(!referee.getRoles().contains(Role.ADMIN)){
+            referee.addRole(Role.ADMIN);
+            refereeRepository.save(referee);
+        }
     }
 }
