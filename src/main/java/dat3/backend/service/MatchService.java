@@ -6,6 +6,7 @@ import dat3.backend.entity.Team;
 import dat3.backend.repository.MatchRepository;
 import dat3.backend.repository.SignUpRepository;
 import dat3.backend.repository.TeamRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -38,6 +39,13 @@ public class MatchService
                 .toList();
     }
 
+    public List<MatchDTO> getAllAcceptedSignUps(){
+        return matchRepository.findAll()
+                .stream()
+                .map(a -> new MatchDTO(a, true))
+                .toList();
+    }
+
     public boolean deleteMatchById(int matchId) {
         try {
             Match match = matchRepository.findById(matchId)
@@ -61,6 +69,16 @@ public class MatchService
             matchRepository.save(createNewMatch);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean addAccepted(MatchDTO matchDTO){
+        try
+        {
+            return true;
+        } catch (Exception e){
             e.printStackTrace();
             return false;
         }

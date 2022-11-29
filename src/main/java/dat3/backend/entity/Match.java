@@ -25,6 +25,9 @@ public class Match
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     List<SignUp> signUps = new ArrayList<>();
 
+    @ManyToMany()
+    List<Referee> acceptedReferees = new ArrayList<>();
+
     @ManyToOne
     Team homeTeam;
 

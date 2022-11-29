@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import dat3.security.repository.UserWithRolesRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SetupDevUsers implements ApplicationRunner {
@@ -112,6 +114,15 @@ public class SetupDevUsers implements ApplicationRunner {
         signUpRepository.save(signUp2);
         signUpRepository.save(signUp3);
 
+        List<Referee> acceptedReferees = new ArrayList<>();
+        acceptedReferees.add(referee1);
+        acceptedReferees.add(referee2);
+
+
+        Match match4 = new Match(team2, team1, ldt1, division1);
+        matchRepository.save(match4);
+        match4.setAcceptedReferees(acceptedReferees);
+        matchRepository.save(match4);
 
         Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
         Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");

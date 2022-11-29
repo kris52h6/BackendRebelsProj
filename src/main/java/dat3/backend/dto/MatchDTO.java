@@ -18,6 +18,7 @@ public class MatchDTO
 {
     Integer id;
     List<Integer> signUpIds = new ArrayList<>();
+    List<String> acceptedReferees = new ArrayList<>();
     int homeTeamId;
     int awayTeamId;
     LocalDateTime startTime;
@@ -35,6 +36,7 @@ public class MatchDTO
     public MatchDTO(Match match,boolean includeAll)
     {
         this.signUpIds = match.getSignUps().stream().map(signUp -> signUp.getId()).collect(Collectors.toList());
+        this.acceptedReferees = match.getAcceptedReferees().stream().map(accepted -> accepted.getUsername()).toList();
         this.homeTeamId = match.getHomeTeam().getId();
         this.awayTeamId = match.getAwayTeam().getId();
         this.startTime = match.getStartTime();

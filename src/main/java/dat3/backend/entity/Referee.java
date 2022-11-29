@@ -18,7 +18,7 @@ import java.util.List;
 public class Referee extends UserWithRoles {
 
     @Column(name = "kampe")
-    @OneToMany
+    @ManyToMany()
     List<Match> matches;
 
     String position;

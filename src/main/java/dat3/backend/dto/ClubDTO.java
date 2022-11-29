@@ -18,9 +18,7 @@ public class ClubDTO {
     String name;
     String address;
     String email;
-
     String teams;
-
     List<Referee> referees;
 
     public ClubDTO(Club c) {

@@ -39,6 +39,10 @@ public class SignUpService
         return foundSignUps.stream().map(s -> new SignUpDTO(s,true)).toList();
     }
 
+    /*public List<SignUpDTO> getAllAcceptedSignUpsByMatchId(int matchId){
+        List<SignUp> foundAcceptedSignUps = si
+    }*/
+
     public boolean addSignUp(SignUpDTO signUpDTO) {
         try {
             Match match = matchRepository.findById(signUpDTO.getMatchId())

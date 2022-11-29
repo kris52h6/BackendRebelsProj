@@ -29,6 +29,17 @@ public class MatchController
         return matchService.getAllMatches();
     }
 
+    @GetMapping("/accepted")
+    List<MatchDTO> getAllAcceptedSignUps(){
+        System.out.println(matchService.getAllAcceptedSignUps().toString());
+        return matchService.getAllAcceptedSignUps();
+    }
+
+    @PatchMapping()
+    boolean addAccepted(@RequestBody MatchDTO matchDTO){
+        return matchService.addAccepted(matchDTO);
+    }
+
     @PostMapping()
     boolean addMatch(@RequestBody MatchDTO matchDTO) {
         return matchService.addMatch(matchDTO);
