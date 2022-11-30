@@ -93,15 +93,15 @@ public class SetupDevUsers implements ApplicationRunner {
 
         Team team1 = new Team("Herlev Rebels", division1);
         Team team2 = new Team("Copenhagen Towers", division1);
-        Team team12 = new Team("Søllerød Golddiggers", division1);
+        Team team3 = new Team("Søllerød Golddiggers", division1);
         teamRepository.save(team1);
         teamRepository.save(team2);
-        teamRepository.save(team12);
+        teamRepository.save(team3);
 
         LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
-        Match match1 = new Match(team1, team12, ldt1, division1);
-        Match match2 = new Match(team1, team2, ldt1, division1);
-        Match match3 = new Match(team2, team1, ldt1, division1);
+        Match match1 = new Match(team1, team3, team2, ldt1, division1);
+        Match match2 = new Match(team1, team2, team3, ldt1, division1);
+        Match match3 = new Match(team2, team1, team3, ldt1, division1);
         matchRepository.save(match1);
         matchRepository.save(match2);
         matchRepository.save(match3);
@@ -119,7 +119,7 @@ public class SetupDevUsers implements ApplicationRunner {
         acceptedReferees.add(referee2);
 
 
-        Match match4 = new Match(team2, team1, ldt1, division1);
+        Match match4 = new Match(team2, team1, team3, ldt1, division1);
         matchRepository.save(match4);
         match4.setAcceptedReferees(acceptedReferees);
         match1.setAcceptedReferees(acceptedReferees);

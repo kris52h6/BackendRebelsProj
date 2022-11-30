@@ -21,13 +21,15 @@ public class MatchDTO
     List<String> acceptedReferees = new ArrayList<>();
     int homeTeamId;
     int awayTeamId;
+    int refereeTeamId;
     LocalDateTime startTime;
     String divisionName;
 
-    public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam) {
+    public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam, Team refereeTeam) {
         return new Match(
                 homeTeam,
                 awayTeam,
+                refereeTeam,
                 matchDTO.getStartTime(),
                 homeTeam.getDivision()
         );
@@ -39,6 +41,7 @@ public class MatchDTO
         this.acceptedReferees = match.getAcceptedReferees().stream().map(accepted -> accepted.getUsername()).toList();
         this.homeTeamId = match.getHomeTeam().getId();
         this.awayTeamId = match.getAwayTeam().getId();
+        this.refereeTeamId = match.getRefereeTeam().getId();
         this.startTime = match.getStartTime();
         this.divisionName = match.getDivision().getName();
         if (includeAll){
