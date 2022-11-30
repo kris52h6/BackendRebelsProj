@@ -31,8 +31,6 @@ public class Referee extends UserWithRoles {
     @ManyToOne
     Club club;
 
-
-
     public Referee(String username, String password, String email, String firstname, String lastname,
                     String position, String bankInformation )
     {

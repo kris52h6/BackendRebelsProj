@@ -49,7 +49,6 @@ public class UserService {
 
 
         newUser.addRole(Role.REFEREE);
-        newUser.addRole(Role.USER);
         userWithRolesRepository.save(newUser);
 
     }
