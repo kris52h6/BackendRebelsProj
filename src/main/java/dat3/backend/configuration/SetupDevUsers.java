@@ -128,8 +128,13 @@ public class SetupDevUsers implements ApplicationRunner {
         Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
         Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");
 
+        club1.addTeam(team1);
+        club1.addTeam(team2);
+        club2.addTeam(team3);
+
         clubRepository.save(club1);
         clubRepository.save(club2);
+
 
 
 

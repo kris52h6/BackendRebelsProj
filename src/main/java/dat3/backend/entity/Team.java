@@ -21,6 +21,9 @@ public class Team
     String name;
 
     @ManyToOne
+    Club club;
+
+    @ManyToOne
     Division division;
 
     public Team(String name, Division division)

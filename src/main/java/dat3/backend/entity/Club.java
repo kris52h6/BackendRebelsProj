@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,8 @@ public class Club {
     String address;
     String email;
 
-    String teams;
+    @OneToMany
+    List<Team> teams = new ArrayList<>();
 
     @OneToMany
     List<Referee> referees;
@@ -31,6 +33,10 @@ public class Club {
         this.name = name.toLowerCase();
         this.address = address;
         this.email = email;
+    }
+
+    public void addTeam(Team team){
+        teams.add(team);
     }
 
 

@@ -3,6 +3,7 @@ package dat3.backend.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.backend.entity.Club;
 import dat3.backend.entity.Referee;
+import dat3.backend.entity.Team;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class ClubDTO {
     String name;
     String address;
     String email;
-    String teams;
+    List<Team> teams;
     List<Referee> referees;
 
     public ClubDTO(Club c) {
