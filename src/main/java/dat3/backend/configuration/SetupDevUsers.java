@@ -59,9 +59,8 @@ public class SetupDevUsers implements ApplicationRunner {
 
 
 
-        user1.addRole(Role.USER);
         user1.addRole(Role.ADMIN);
-        user2.addRole(Role.USER);
+        user1.addRole(Role.REFEREE);
         user3.addRole(Role.ADMIN);
         user5.addRole(Role.REFEREE);
 

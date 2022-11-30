@@ -1,6 +1,7 @@
 package dat3.backend.api;
 
 import dat3.backend.dto.RefereeDTO;
+import dat3.backend.dto.UsernameDTO;
 import dat3.backend.service.UserService;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
@@ -21,14 +22,11 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public void createUser(@RequestBody UserWithRolesRequest userWithRolesRequest){
-        userService.addUser(userWithRolesRequest);
-    }
 
     @PostMapping("/referee")
-    public void createReferee(@RequestBody RefereeDTO refereeDTO ){
-        userService.addReferee(refereeDTO);
+    public UsernameDTO createReferee(@RequestBody RefereeDTO refereeDTO ){
+
+        return  userService.addReferee(refereeDTO);
     }
 
     @GetMapping()
