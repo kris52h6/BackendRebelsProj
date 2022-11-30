@@ -34,15 +34,19 @@ public class Match
     @ManyToOne
     Team awayTeam;
 
+    @ManyToOne
+    Team refereeTeam;
+
     LocalDateTime startTime;
 
     @ManyToOne
     Division division;
 
-    public Match(Team homeTeam, Team awayTeam, LocalDateTime startTime, Division division)
+    public Match(Team homeTeam, Team awayTeam, Team refereeTeam, LocalDateTime startTime, Division division)
     {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
+        this.refereeTeam = refereeTeam;
         this.startTime = startTime;
         this.division = division;
     }
