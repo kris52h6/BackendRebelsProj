@@ -122,7 +122,9 @@ public class SetupDevUsers implements ApplicationRunner {
         Match match4 = new Match(team2, team1, ldt1, division1);
         matchRepository.save(match4);
         match4.setAcceptedReferees(acceptedReferees);
+        match1.setAcceptedReferees(acceptedReferees);
         matchRepository.save(match4);
+        matchRepository.save(match1);
 
         Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
         Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");

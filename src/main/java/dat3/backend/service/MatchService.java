@@ -1,12 +1,15 @@
 package dat3.backend.service;
 
 import dat3.backend.dto.MatchDTO;
+import dat3.backend.dto.PatchRefereeDTO;
 import dat3.backend.entity.Match;
+import dat3.backend.entity.Referee;
+import dat3.backend.entity.SignUp;
 import dat3.backend.entity.Team;
 import dat3.backend.repository.MatchRepository;
 import dat3.backend.repository.SignUpRepository;
 import dat3.backend.repository.TeamRepository;
-import org.springframework.data.domain.Sort;
+import dat3.security.repository.RefereeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,11 +22,13 @@ public class MatchService
     MatchRepository matchRepository;
     TeamRepository teamRepository;
     SignUpRepository signUpRepository;
+    RefereeRepository refereeRepository;
 
-    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository, SignUpRepository signUpRepository) {
+    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, RefereeRepository refereeRepository) {
         this.matchRepository = matchRepository;
         this.teamRepository = teamRepository;
         this.signUpRepository = signUpRepository;
+        this.refereeRepository = refereeRepository;
     }
 
     public MatchDTO getMatchById(int id){
@@ -39,7 +44,7 @@ public class MatchService
                 .toList();
     }
 
-    public List<MatchDTO> getAllAcceptedSignUps(){
+    public List<MatchDTO> getAllAcceptedReferees(){
         return matchRepository.findAll()
                 .stream()
                 .map(a -> new MatchDTO(a, true))
@@ -74,9 +79,18 @@ public class MatchService
         }
     }
 
-    public boolean addAccepted(MatchDTO matchDTO){
+    public boolean addAccepted(PatchRefereeDTO patchRefereeDTO){
         try
         {
+            Match foundMatch = matchRepository.findById(patchRefereeDTO.getMatchId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "match not found"));;
+            Referee foundReferee = refereeRepository.findById(patchRefereeDTO.getUsername())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Referee not found"));
+            SignUp foundSignup = signUpRepository.findById(patchRefereeDTO.getSignupId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Signup not found"));
+            foundMatch.addReferee(foundReferee);
+            signUpRepository.delete(foundSignup);
+            matchRepository.save(foundMatch);
             return true;
         } catch (Exception e){
             e.printStackTrace();
