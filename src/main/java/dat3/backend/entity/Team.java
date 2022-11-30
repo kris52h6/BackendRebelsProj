@@ -26,8 +26,7 @@ public class Team
     @ManyToOne
     Division division;
 
-    public Team(String name, Division division)
-    {
+    public Team(String name, Division division) {
         this.name = name;
         this.division = division;
     }

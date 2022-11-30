@@ -1,6 +1,7 @@
 package dat3.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import dat3.backend.entity.Club;
 import dat3.backend.entity.Team;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +16,13 @@ public class TeamDTO
     Integer id;
     String name;
     String divisionName;
+    String club;
 
     public TeamDTO(Team t, boolean includeAll)
     {
         this.name = t.getName();
         this.divisionName = t.getDivision().getName();
+        this.club = t.getClub().getName();
         if (includeAll){
             this.id = t.getId();
         }

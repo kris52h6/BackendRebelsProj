@@ -131,9 +131,12 @@ public class SetupDevUsers implements ApplicationRunner {
         club1.addTeam(team1);
         club1.addTeam(team2);
         club2.addTeam(team3);
+        team1.setClub(club1);
+
 
         clubRepository.save(club1);
         clubRepository.save(club2);
+        teamRepository.save(team1);
 
 
 
