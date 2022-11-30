@@ -7,6 +7,7 @@ import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.List;
@@ -41,8 +42,8 @@ public class UserController {
     }
 
     @PatchMapping("/referee")
-    public void editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
-        userService.editReferee(p.getName(), refereeDTO);
+    public UsernameDTO editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
+      return userService.editReferee(p.getName(), refereeDTO);
     }
 
     @GetMapping("/referee")
