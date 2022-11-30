@@ -3,7 +3,9 @@ package dat3.backend.service;
 import dat3.backend.dto.ClubDTO;
 import dat3.backend.entity.Club;
 import dat3.backend.repository.ClubRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -32,4 +34,8 @@ public class ClubService {
     }
 
 
+    public ClubDTO getClubByName(String clubName) {
+        return clubRepository.findById(clubName).map(club -> new ClubDTO(club))
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Club not found"));
+    }
 }

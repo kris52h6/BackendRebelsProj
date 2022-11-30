@@ -30,6 +30,13 @@ public class ClubController {
         clubService.addClub(clubDTO);
     }
 
+    @GetMapping("/{clubName}")
+    public ClubDTO getClubByName(@PathVariable String clubName){
+        ClubDTO clubDTO = clubService.getClubByName(clubName);
+        return clubService.getClubByName(clubName);
+    }
+
+
 
 
 }
