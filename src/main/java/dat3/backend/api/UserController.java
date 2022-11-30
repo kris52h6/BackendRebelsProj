@@ -1,11 +1,13 @@
 package dat3.backend.api;
 
 import dat3.backend.dto.RefereeDTO;
+import dat3.backend.dto.UsernameDTO;
 import dat3.backend.service.UserService;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.List;
@@ -21,14 +23,11 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public void createUser(@RequestBody UserWithRolesRequest userWithRolesRequest){
-        userService.addUser(userWithRolesRequest);
-    }
 
     @PostMapping("/referee")
-    public void createReferee(@RequestBody RefereeDTO refereeDTO ){
-        userService.addReferee(refereeDTO);
+    public UsernameDTO createReferee(@RequestBody RefereeDTO refereeDTO ){
+
+        return  userService.addReferee(refereeDTO);
     }
 
     @GetMapping()
@@ -43,8 +42,8 @@ public class UserController {
     }
 
     @PatchMapping("/referee")
-    public void editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
-        userService.editReferee(p.getName(), refereeDTO);
+    public UsernameDTO editReferee(Principal p, @RequestBody RefereeDTO refereeDTO){
+      return userService.editReferee(p.getName(), refereeDTO);
     }
 
     @GetMapping("/referee")
