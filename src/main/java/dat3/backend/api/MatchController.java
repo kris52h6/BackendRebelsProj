@@ -1,6 +1,8 @@
 package dat3.backend.api;
 
 import dat3.backend.dto.MatchDTO;
+import dat3.backend.dto.PatchRefereeDTO;
+import dat3.backend.dto.RefereeDTO;
 import dat3.backend.service.MatchService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,13 +33,13 @@ public class MatchController
 
     @GetMapping("/accepted")
     List<MatchDTO> getAllAcceptedSignUps(){
-        System.out.println(matchService.getAllAcceptedSignUps().toString());
-        return matchService.getAllAcceptedSignUps();
+        System.out.println(matchService.getAllAcceptedReferees().toString());
+        return matchService.getAllAcceptedReferees();
     }
 
     @PatchMapping()
-    boolean addAccepted(@RequestBody MatchDTO matchDTO){
-        return matchService.addAccepted(matchDTO);
+    boolean addAccepted(@RequestBody PatchRefereeDTO patchRefereeDTO){
+        return matchService.addAccepted(patchRefereeDTO);
     }
 
     @PostMapping()

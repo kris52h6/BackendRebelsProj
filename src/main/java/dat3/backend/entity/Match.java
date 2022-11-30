@@ -47,6 +47,7 @@ public class Match
         this.division = division;
     }
 
-
-
+    public void addReferee(Referee referee){
+        acceptedReferees.add(referee);
+    }
 }
