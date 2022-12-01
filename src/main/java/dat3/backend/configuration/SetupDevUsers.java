@@ -121,19 +121,55 @@ public class SetupDevUsers implements ApplicationRunner {
         Team team2 = new Team("Copenhagen Towers", division1);
         Team team3 = new Team("Søllerød Golddiggers", division1);
 
+        Team team4 = new Team("Herlev Rebels", division2);
+        Team team5 = new Team("Copenhagen Towers", division2);
+        Team team6 = new Team("Søllerød Golddiggers", division2);
+
+        Team team7 = new Team("Herlev Rebels", division3);
+        Team team8 = new Team("Copenhagen Towers", division3);
+        Team team9 = new Team("Søllerød Golddiggers", division3);
+
+        Team team10 = new Team("Herlev Rebels", division4);
+        Team team11 = new Team("Copenhagen Towers", division4);
+        Team team12 = new Team("Søllerød Golddiggers", division4);
+
         teamRepository.save(team1);
         teamRepository.save(team2);
         teamRepository.save(team3);
+        teamRepository.save(team4);
+        teamRepository.save(team5);
+        teamRepository.save(team6);
+        teamRepository.save(team7);
+        teamRepository.save(team8);
+        teamRepository.save(team9);
+        teamRepository.save(team10);
+        teamRepository.save(team11);
+        teamRepository.save(team12);
 
         LocalDateTime ldt1 = LocalDateTime.of(2022, 10, 10, 18, 15);
         Match match1 = new Match(team1, team3, team2, ldt1, division1);
         Match match2 = new Match(team1, team2, team3, ldt1, division1);
         Match match3 = new Match(team2, team1, team3, ldt1, division1);
         Match match4 = new Match(team2, team3, team1, ldt1, division1);
+
+        Match match5 = new Match(team4, team5, team6, ldt1, division2);
+
+        Match match6 = new Match(team7, team8, team9, ldt1, division3);
+        Match match7 = new Match(team8, team7, team9, ldt1, division3);
+        Match match8 = new Match(team9, team7, team8, ldt1, division3);
+
+        Match match9 = new Match(team10, team11, team12, ldt1, division4);
+        Match match10 = new Match(team11, team12, team10, ldt1, division4);
         matchRepository.save(match1);
         matchRepository.save(match2);
         matchRepository.save(match3);
         matchRepository.save(match4);
+        matchRepository.save(match5);
+        matchRepository.save(match6);
+        matchRepository.save(match7);
+        matchRepository.save(match8);
+        matchRepository.save(match9);
+        matchRepository.save(match10);
 
         SignUp signUp1 = new SignUp(match2, referee2, "ref");
         SignUp signUp2 = new SignUp(match2, referee1, "ref");
@@ -149,11 +185,11 @@ public class SetupDevUsers implements ApplicationRunner {
         acceptedReferees.add(referee2);
 
 
-        Match match5 = new Match(team2, team1, team3, ldt1, division1);
-        matchRepository.save(match5);
-        match5.setAcceptedReferees(acceptedReferees);
+        Match match20 = new Match(team2, team1, team3, ldt1, division1);
+        matchRepository.save(match20);
+        match20.setAcceptedReferees(acceptedReferees);
         match1.setAcceptedReferees(acceptedReferees);
-        matchRepository.save(match5);
+        matchRepository.save(match20);
         matchRepository.save(match1);
 
         Club club1 = new Club("Herlev Rebels", "Club1Sted", "club@club1.com");
@@ -167,9 +203,29 @@ public class SetupDevUsers implements ApplicationRunner {
         club1.addTeam(team1);
         club2.addTeam(team2);
         club3.addTeam(team3);
+        club1.addTeam(team4);
+        club2.addTeam(team5);
+        club3.addTeam(team6);
+        club1.addTeam(team7);
+        club2.addTeam(team8);
+        club3.addTeam(team9);
+        club1.addTeam(team10);
+        club2.addTeam(team11);
+        club3.addTeam(team12);
+
+
         team1.setClub(club1);
         team2.setClub(club2);
         team3.setClub(club3);
+        team4.setClub(club1);
+        team5.setClub(club2);
+        team6.setClub(club3);
+        team7.setClub(club1);
+        team8.setClub(club2);
+        team9.setClub(club3);
+        team10.setClub(club1);
+        team11.setClub(club2);
+        team12.setClub(club3);
 
         user1.setClub(club1);
         user2.setClub(club2);
@@ -214,6 +270,15 @@ public class SetupDevUsers implements ApplicationRunner {
         teamRepository.save(team1);
         teamRepository.save(team2);
         teamRepository.save(team3);
+        teamRepository.save(team4);
+        teamRepository.save(team5);
+        teamRepository.save(team6);
+        teamRepository.save(team7);
+        teamRepository.save(team8);
+        teamRepository.save(team9);
+        teamRepository.save(team10);
+        teamRepository.save(team11);
+        teamRepository.save(team12);
 
         userWithRolesRepository.save(user1);
         userWithRolesRepository.save(user2);

@@ -3,6 +3,7 @@ package dat3.backend.api;
 import dat3.backend.dto.MatchDTO;
 import dat3.backend.dto.PatchRefereeDTO;
 import dat3.backend.dto.RefereeDTO;
+import dat3.backend.entity.Match;
 import dat3.backend.service.MatchService;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,11 @@ public class MatchController
     @DeleteMapping("/{matchId}")
     boolean deleteMatchById(@PathVariable int matchId) {
         return matchService.deleteMatchById(matchId);
+    }
+
+    @GetMapping("/division/{divisionName}")
+    List<MatchDTO> getAllMatchesByDivision(@PathVariable String divisionName) {
+        return matchService.getAllMatchesByDivisionId(divisionName);
     }
 }
 

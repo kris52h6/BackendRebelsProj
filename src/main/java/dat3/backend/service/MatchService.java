@@ -2,10 +2,8 @@ package dat3.backend.service;
 
 import dat3.backend.dto.MatchDTO;
 import dat3.backend.dto.PatchRefereeDTO;
-import dat3.backend.entity.Match;
-import dat3.backend.entity.Referee;
-import dat3.backend.entity.SignUp;
-import dat3.backend.entity.Team;
+import dat3.backend.entity.*;
+import dat3.backend.repository.DivisionRepository;
 import dat3.backend.repository.MatchRepository;
 import dat3.backend.repository.SignUpRepository;
 import dat3.backend.repository.TeamRepository;
@@ -23,12 +21,14 @@ public class MatchService
     TeamRepository teamRepository;
     SignUpRepository signUpRepository;
     RefereeRepository refereeRepository;
+    DivisionRepository divisionRepository;
 
-    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, RefereeRepository refereeRepository) {
+    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository, SignUpRepository signUpRepository, RefereeRepository refereeRepository, DivisionRepository divisionRepository) {
         this.matchRepository = matchRepository;
         this.teamRepository = teamRepository;
         this.signUpRepository = signUpRepository;
         this.refereeRepository = refereeRepository;
+        this.divisionRepository = divisionRepository;
     }
 
     public MatchDTO getMatchById(int id){
@@ -98,5 +98,11 @@ public class MatchService
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<MatchDTO> getAllMatchesByDivisionId(String divisionId) {
+        Division divisionFound = divisionRepository.findById(divisionId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Division not found"));
+        return matchRepository.findAllByDivision(divisionFound).stream().map(m -> new MatchDTO(m, true)).toList();
     }
 }
