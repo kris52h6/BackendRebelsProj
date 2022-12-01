@@ -51,17 +51,22 @@ public class SetupDevUsers implements ApplicationRunner {
         System.out.println("******* REMOVE THIS BEFORE DEPLOYMENT, AND SETUP DEFAULT USERS DIRECTLY  *****");
         System.out.println("**** ** ON YOUR REMOTE DATABASE                 ******************************");
         System.out.println("******************************************************************************");
-        UserWithRoles user1 = new UserWithRoles("user1",  passwordUsedByAll, "user1@a.dk", "firstname1", "lastname1");
-        UserWithRoles user2 = new UserWithRoles("user2",  passwordUsedByAll, "user2@a.dk", "firstname2", "lastname2");
-        UserWithRoles user3 = new UserWithRoles("user3",  passwordUsedByAll, "user3@a.dk", "firstname3", "lastname3");
-        UserWithRoles user4 = new UserWithRoles("user4",  passwordUsedByAll, "user4@a.dk", "firstname4", "lastname4");
-        UserWithRoles user5 = new UserWithRoles("user5",  passwordUsedByAll, "user5@a.dk", "firstname5", "lastname5");
+        Referee user1 = new Referee("user1",  passwordUsedByAll, "user1@a.dk", "firstname1", "lastname1");
+        Referee user2 = new Referee("user2",  passwordUsedByAll, "user2@a.dk", "firstname2", "lastname2");
+        Referee user3 = new Referee("user3",  passwordUsedByAll, "user3@a.dk", "firstname3", "lastname3");
+        Referee user4 = new Referee("user4",  passwordUsedByAll, "user4@a.dk", "firstname4", "lastname4");
+        Referee user5 = new Referee("user5",  passwordUsedByAll, "user5@a.dk", "firstname5", "lastname5");
 
+
+        user1.setLicense("A");
+        user2.setLicense("B");
+        user3.setLicense("C");
+        user4.setLicense("D");
+        user5.setLicense("I");
 
 
         user1.addRole(Role.ADMIN);
         user1.addRole(Role.REFEREE);
-        user3.addRole(Role.ADMIN);
         user5.addRole(Role.REFEREE);
 
         //No Role assigned to user4
@@ -133,10 +138,18 @@ public class SetupDevUsers implements ApplicationRunner {
         club2.addTeam(team3);
         team1.setClub(club1);
 
+        user1.setClub(club1);
+        List<Referee> refs = new ArrayList<>();
+
+        refs.add(user1);
+        club1.setReferees(refs);
+
+
 
         clubRepository.save(club1);
         clubRepository.save(club2);
         teamRepository.save(team1);
+        userWithRolesRepository.save(user1);
 
 
 
