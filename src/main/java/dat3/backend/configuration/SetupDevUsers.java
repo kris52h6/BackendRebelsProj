@@ -198,8 +198,6 @@ public class SetupDevUsers implements ApplicationRunner {
         Club club4 = new Club("Club4", "Club4Sted", "club@club4.com");
         Club club5 = new Club("Club5", "Club5Sted", "club@club5.com");
 
-
-
         club1.addTeam(team1);
         club2.addTeam(team2);
         club3.addTeam(team3);
@@ -234,31 +232,26 @@ public class SetupDevUsers implements ApplicationRunner {
         user5.setClub(club5);
 
         referee1.setClub(club1);
-        referee1.setClub(club2);
-        referee1.setClub(club3);
-        referee1.setClub(club4);
-        referee1.setClub(club5);
+        referee2.setClub(club2);
+        referee3.setClub(club3);
+        referee4.setClub(club4);
+        referee5.setClub(club5);
 
 
-        List<Referee> refs1 = new ArrayList<>();
-        refs1.add(user1);
-        club1.setReferees(refs1);
+        club1.addReferee(user1);
+        club1.addReferee(referee1);
 
-        List<Referee> refs2 = new ArrayList<>();
-        refs2.add(user2);
-        club2.setReferees(refs2);
+        club2.addReferee(user2);
+        club2.addReferee(referee2);
+        club3.addReferee(user3);
+        club3.addReferee(referee3);
+        club4.addReferee(user4);
+        club4.addReferee(referee4);
+        club5.addReferee(user5);
+        club5.addReferee(referee5);
 
-        List<Referee> refs3 = new ArrayList<>();
-        refs3.add(user3);
-        club3.setReferees(refs3);
 
-        List<Referee> refs4 = new ArrayList<>();
-        refs4.add(user4);
-        club4.setReferees(refs4);
 
-        List<Referee> refs5 = new ArrayList<>();
-        refs5.add(user5);
-        club5.setReferees(refs5);
 
 
         clubRepository.save(club1);
@@ -285,6 +278,11 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
         userWithRolesRepository.save(user5);
+        userWithRolesRepository.save(referee1);
+        userWithRolesRepository.save(referee2);
+        userWithRolesRepository.save(referee3);
+        userWithRolesRepository.save(referee4);
+        userWithRolesRepository.save(referee5);
 
         // DOMMERANSVARLIG
         Referee refManagerHerlev = new Referee("herlev", passwordUsedByAll, "refman1@a.dk","firstname2", "lastname10");
@@ -293,6 +291,8 @@ public class SetupDevUsers implements ApplicationRunner {
         refManagerHerlev.setLicense("A");
         refManagerHerlev.setClub(club1);
         userWithRolesRepository.save(refManagerHerlev);
+        club1.addReferee(refManagerHerlev);
+        clubRepository.save(club1);
 
         Referee refManagerCopenhagen = new Referee("copenhagen", passwordUsedByAll, "refman2@a.dk","firstname2", "lastname10");
         refManagerCopenhagen.addRole(Role.REFEREE);
