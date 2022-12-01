@@ -53,6 +53,11 @@ public class UserController {
         return userService.getReferee(p.getName());
     }
 
+    @GetMapping("/referee/{refereeName}")
+    public RefereeDTO getRefereeInfo(@PathVariable String refereeName){
+        return userService.getReferee(refereeName);
+    }
+
     @PatchMapping("/refereePassword")
     public void editRefereePassword(Principal p, @RequestBody RefereeDTO refereeDTO) {
         userService.editRefereePassword(p.getName(), refereeDTO);

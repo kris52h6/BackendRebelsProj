@@ -123,6 +123,7 @@ public class SecurityConfig {
             .antMatchers("/api/clubs").permitAll()
             .antMatchers("/api/clubs/**").permitAll()
             .antMatchers("/api/divisions").permitAll()
+            .antMatchers("/api/referees/**").permitAll()
 
     .anyRequest().authenticated());
 
