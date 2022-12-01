@@ -27,7 +27,7 @@ public class Club {
     List<Team> teams = new ArrayList<>();
 
     @OneToMany
-    List<Referee> referees;
+    List<Referee> referees = new ArrayList<>();
 
 
 
@@ -40,6 +40,8 @@ public class Club {
     public void addTeam(Team team){
         teams.add(team);
     }
+
+    public void addReferee(Referee referee){referees.add(referee);}
 
 
 
