@@ -22,9 +22,15 @@ public class TeamDTO
     {
         this.name = t.getName();
         this.divisionName = t.getDivision().getName();
-        this.club = t.getClub().getName();
         if (includeAll){
             this.id = t.getId();
         }
+    }
+
+    public TeamDTO(Team t)
+    {
+        this.name = t.getName();
+        this.divisionName = t.getDivision().getName();
+        this.club = t.getClub().getName();
     }
 }
