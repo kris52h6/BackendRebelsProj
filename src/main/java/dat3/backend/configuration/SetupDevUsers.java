@@ -178,14 +178,15 @@ public class SetupDevUsers implements ApplicationRunner {
         user5.setClub(club5);
 
         referee1.setClub(club1);
-        referee1.setClub(club2);
-        referee1.setClub(club3);
-        referee1.setClub(club4);
-        referee1.setClub(club5);
+        referee2.setClub(club2);
+        referee3.setClub(club3);
+        referee4.setClub(club4);
+        referee5.setClub(club5);
 
 
         List<Referee> refs1 = new ArrayList<>();
         refs1.add(user1);
+        refs1.add(referee1);
         club1.setReferees(refs1);
 
         List<Referee> refs2 = new ArrayList<>();
@@ -220,6 +221,7 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
         userWithRolesRepository.save(user5);
+        userWithRolesRepository.save(referee1);
 
         // DOMMERANSVARLIG
         Referee refManagerHerlev = new Referee("herlev", passwordUsedByAll, "refman1@a.dk","firstname2", "lastname10");
