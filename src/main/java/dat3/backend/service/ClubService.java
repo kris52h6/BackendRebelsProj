@@ -2,18 +2,25 @@ package dat3.backend.service;
 
 import dat3.backend.dto.ClubDTO;
 import dat3.backend.entity.Club;
+import dat3.backend.entity.Referee;
 import dat3.backend.repository.ClubRepository;
+import dat3.security.repository.RefereeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ClubService {
     ClubRepository clubRepository;
+    RefereeRepository refereeRepository;
 
-    public ClubService(ClubRepository clubRepository){
+
+
+    public ClubService(ClubRepository clubRepository, RefereeRepository refereeRepository){
+        this.refereeRepository = refereeRepository;
         this.clubRepository = clubRepository;
     }
 
@@ -37,5 +44,18 @@ public class ClubService {
     public ClubDTO getClubByName(String clubName) {
         return clubRepository.findById(clubName).map(club -> new ClubDTO(club))
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Club not found"));
+    }
+
+
+    public ClubDTO getClubFormUsername(String refereeName){
+        List<Club> allClubs  = clubRepository.findAll();
+        for(Club club : allClubs){
+            for(Referee ref: club.getReferees()){
+                if(ref.getUsername().equals(refereeName)){
+                    return new ClubDTO(club);
+                }
+            }
+        }
+        return null;
     }
 }

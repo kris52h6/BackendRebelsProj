@@ -40,7 +40,7 @@ public class Referee extends UserWithRoles {
 
     }
 
-    public Referee(String username, String password, String email, String firstname, String lastname){
+    public  Referee(String username, String password, String email, String firstname, String lastname){
         super(username,password, email, firstname, lastname);
     }
 

@@ -2,6 +2,7 @@ package dat3.backend.api;
 
 import dat3.backend.dto.RefereeDTO;
 import dat3.backend.dto.UsernameDTO;
+import dat3.backend.service.ClubService;
 import dat3.backend.service.UserService;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
@@ -17,9 +18,10 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     UserService userService;
-
-    public UserController(UserService userService){
+    ClubService clubService;
+    public UserController(UserService userService, ClubService clubService){
         this.userService = userService;
+        this.clubService = clubService;
     }
 
 
@@ -61,4 +63,6 @@ public class UserController {
     public void makeAdmin(@PathVariable String username){
         userService.makeAdmin(username);
     }
+
+
 }
