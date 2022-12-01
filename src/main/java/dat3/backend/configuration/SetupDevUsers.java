@@ -184,8 +184,6 @@ public class SetupDevUsers implements ApplicationRunner {
         referee1.setClub(club5);
 
 
-
-
         List<Referee> refs1 = new ArrayList<>();
         refs1.add(user1);
         club1.setReferees(refs1);
@@ -213,6 +211,9 @@ public class SetupDevUsers implements ApplicationRunner {
         clubRepository.save(club4);
         clubRepository.save(club5);
 
+        teamRepository.save(team1);
+        teamRepository.save(team2);
+        teamRepository.save(team3);
 
         userWithRolesRepository.save(user1);
         userWithRolesRepository.save(user2);
@@ -221,19 +222,19 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user5);
 
         // DOMMERANSVARLIG
-        Referee refManagerHerlev   = new Referee("herlev", passwordUsedByAll, "ref3@a.dk","firstname2", "lastname10");
-        referee3.addRole(Role.REFEREE);
-        referee3.addRole(Role.REFEREEMANAGER);
-        referee3.setLicense("A");
-        referee3.setClub(club1);
-        userWithRolesRepository.save(referee3);
+        Referee refManagerHerlev = new Referee("herlev", passwordUsedByAll, "refman1@a.dk","firstname2", "lastname10");
+        refManagerHerlev.addRole(Role.REFEREE);
+        refManagerHerlev.addRole(Role.REFEREEMANAGER);
+        refManagerHerlev.setLicense("A");
+        refManagerHerlev.setClub(club1);
+        userWithRolesRepository.save(refManagerHerlev);
 
-        Referee refManagerCopenhagen = new Referee("copenhagen", passwordUsedByAll, "ref4@a.dk","firstname2", "lastname10");
-        referee4.addRole(Role.REFEREE);
-        referee4.addRole(Role.REFEREEMANAGER);
-        referee4.setLicense("A");
-        referee4.setClub(club2);
-        userWithRolesRepository.save(referee4);
+        Referee refManagerCopenhagen = new Referee("copenhagen", passwordUsedByAll, "refman2@a.dk","firstname2", "lastname10");
+        refManagerCopenhagen.addRole(Role.REFEREE);
+        refManagerCopenhagen.addRole(Role.REFEREEMANAGER);
+        refManagerCopenhagen.setLicense("A");
+        refManagerCopenhagen.setClub(club2);
+        userWithRolesRepository.save(refManagerCopenhagen);
 
     }
 
