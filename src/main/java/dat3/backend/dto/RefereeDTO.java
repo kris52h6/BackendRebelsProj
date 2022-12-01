@@ -48,6 +48,7 @@ public class RefereeDTO {
         this.license = r.getLicense().toString();
         this.bankInformation = r.getBankInformation();
         this.roles = r.getRoles();
+        if(!(r.getClub() == null)){
         this.clubName = r.getClub().getName();
-    }
+    }}
 }
