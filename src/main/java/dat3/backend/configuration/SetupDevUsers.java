@@ -67,6 +67,9 @@ public class SetupDevUsers implements ApplicationRunner {
 
         user1.addRole(Role.ADMIN);
         user1.addRole(Role.REFEREE);
+        user2.addRole(Role.REFEREE);
+        user3.addRole(Role.REFEREE);
+        user4.addRole(Role.REFEREE);
         user5.addRole(Role.REFEREE);
 
         //No Role assigned to user4
@@ -78,12 +81,31 @@ public class SetupDevUsers implements ApplicationRunner {
 
         Referee referee1 = new Referee("referee1", passwordUsedByAll, "ref1@a.dk","firstname10", "lastname10");
         Referee referee2 = new Referee("referee2", passwordUsedByAll, "ref2@a.dk","firstname2", "lastname10");
+        Referee referee3 = new Referee("referee3", passwordUsedByAll, "ref3@a.dk","firstname2", "lastname10");
+        Referee referee4 = new Referee("referee4", passwordUsedByAll, "ref4@a.dk","firstname2", "lastname10");
+        Referee referee5 = new Referee("referee5", passwordUsedByAll, "ref5@a.dk","firstname2", "lastname10");
+
         referee1.addRole(Role.REFEREE);
         referee2.addRole(Role.REFEREE);
+        referee3.addRole(Role.REFEREE);
+        referee4.addRole(Role.REFEREE);
+        referee5.addRole(Role.REFEREE);
+
+
         referee1.setLicense("A");
         referee2.setLicense("A");
+        referee2.setLicense("B");
+        referee3.setLicense("B");
+        referee4.setLicense("C");
+        referee5.setLicense("C");
+
+
         userWithRolesRepository.save(referee1);
         userWithRolesRepository.save(referee2);
+        userWithRolesRepository.save(referee3);
+        userWithRolesRepository.save(referee4);
+        userWithRolesRepository.save(referee5);
+
 
         Division division1 = new Division("U13",90,100, "LOL");
         Division division2 = new Division("U15",90,100, "LOL");
@@ -98,6 +120,7 @@ public class SetupDevUsers implements ApplicationRunner {
         Team team1 = new Team("Herlev Rebels", division1);
         Team team2 = new Team("Copenhagen Towers", division1);
         Team team3 = new Team("Søllerød Golddiggers", division1);
+
         teamRepository.save(team1);
         teamRepository.save(team2);
         teamRepository.save(team3);
@@ -132,6 +155,10 @@ public class SetupDevUsers implements ApplicationRunner {
 
         Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
         Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");
+        Club club3 = new Club("Club3", "Club3Sted", "club@club3.com");
+        Club club4 = new Club("Club4", "Club4Sted", "club@club4.com");
+        Club club5 = new Club("Club5", "Club5Sted", "club@club5.com");
+
 
         club1.addTeam(team1);
         club1.addTeam(team2);
@@ -139,20 +166,53 @@ public class SetupDevUsers implements ApplicationRunner {
         team1.setClub(club1);
 
         user1.setClub(club1);
-        List<Referee> refs = new ArrayList<>();
+        user2.setClub(club2);
+        user3.setClub(club3);
+        user4.setClub(club4);
+        user5.setClub(club5);
 
-        refs.add(user1);
-        club1.setReferees(refs);
+        referee1.setClub(club1);
+        referee1.setClub(club2);
+        referee1.setClub(club3);
+        referee1.setClub(club4);
+        referee1.setClub(club5);
 
+
+
+
+        List<Referee> refs1 = new ArrayList<>();
+        refs1.add(user1);
+        club1.setReferees(refs1);
+
+        List<Referee> refs2 = new ArrayList<>();
+        refs2.add(user2);
+        club2.setReferees(refs2);
+
+        List<Referee> refs3 = new ArrayList<>();
+        refs3.add(user3);
+        club3.setReferees(refs3);
+
+        List<Referee> refs4 = new ArrayList<>();
+        refs4.add(user4);
+        club4.setReferees(refs4);
+
+        List<Referee> refs5 = new ArrayList<>();
+        refs5.add(user5);
+        club5.setReferees(refs5);
 
 
         clubRepository.save(club1);
         clubRepository.save(club2);
-        teamRepository.save(team1);
+        clubRepository.save(club3);
+        clubRepository.save(club4);
+        clubRepository.save(club5);
+
+
         userWithRolesRepository.save(user1);
-
-
-
+        userWithRolesRepository.save(user2);
+        userWithRolesRepository.save(user3);
+        userWithRolesRepository.save(user4);
+        userWithRolesRepository.save(user5);
 
     }
 }

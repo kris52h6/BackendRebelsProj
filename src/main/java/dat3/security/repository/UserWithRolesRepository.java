@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface
-UserWithRolesRepository extends JpaRepository<UserWithRoles,String> {
+UserWithRolesRepository extends JpaRepository<UserWithRoles, String> {
     Boolean existsByEmail(String email);
-
 }
