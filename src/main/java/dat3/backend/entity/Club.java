@@ -29,6 +29,8 @@ public class Club {
     @OneToMany
     List<Referee> referees;
 
+
+
     public Club(String name, String address, String email) {
         this.name = name.toLowerCase();
         this.address = address;

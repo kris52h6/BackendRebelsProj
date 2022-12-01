@@ -101,42 +101,67 @@ public class SetupDevUsers implements ApplicationRunner {
         Match match1 = new Match(team1, team3, team2, ldt1, division1);
         Match match2 = new Match(team1, team2, team3, ldt1, division1);
         Match match3 = new Match(team2, team1, team3, ldt1, division1);
+        Match match4 = new Match(team2, team3, team1, ldt1, division1);
         matchRepository.save(match1);
         matchRepository.save(match2);
         matchRepository.save(match3);
+        matchRepository.save(match4);
 
-
-        SignUp signUp1 = new SignUp(match1, referee1, "ref");
+        SignUp signUp1 = new SignUp(match2, referee2, "ref");
         SignUp signUp2 = new SignUp(match2, referee1, "ref");
-        SignUp signUp3 = new SignUp(match1, referee2, "ref");
+        SignUp signUp4 = new SignUp(match4, referee1, "ref");
+        SignUp signUp5 = new SignUp(match4, referee2, "ref");
         signUpRepository.save(signUp1);
         signUpRepository.save(signUp2);
-        signUpRepository.save(signUp3);
+        signUpRepository.save(signUp4);
+        signUpRepository.save(signUp5);
 
         List<Referee> acceptedReferees = new ArrayList<>();
         acceptedReferees.add(referee1);
         acceptedReferees.add(referee2);
 
 
-        Match match4 = new Match(team2, team1, team3, ldt1, division1);
-        matchRepository.save(match4);
-        match4.setAcceptedReferees(acceptedReferees);
+        Match match5 = new Match(team2, team1, team3, ldt1, division1);
+        matchRepository.save(match5);
+        match5.setAcceptedReferees(acceptedReferees);
         match1.setAcceptedReferees(acceptedReferees);
-        matchRepository.save(match4);
+        matchRepository.save(match5);
         matchRepository.save(match1);
 
-        Club club1 = new Club("Club1", "Club1Sted", "club@club1.com");
-        Club club2 = new Club("Club2", "Club2Sted", "club@club2.com");
+        Club club1 = new Club("Herlev Rebels", "Club1Sted", "club@club1.com");
+        Club club2 = new Club("Copenhagen Towers", "Club2Sted", "club@club2.com");
+        Club club3 = new Club("Søllerød Golddiggers", "Club3Sted", "club@club3.com");
 
         club1.addTeam(team1);
-        club1.addTeam(team2);
-        club2.addTeam(team3);
+        club2.addTeam(team2);
+        club3.addTeam(team3);
         team1.setClub(club1);
+        team2.setClub(club2);
+        team3.setClub(club3);
 
 
         clubRepository.save(club1);
         clubRepository.save(club2);
+        clubRepository.save(club3);
         teamRepository.save(team1);
+        teamRepository.save(team2);
+        teamRepository.save(team3);
+
+
+        // DOMMERANSVARLIG
+        Referee referee3 = new Referee("herlev", passwordUsedByAll, "ref3@a.dk","firstname2", "lastname10");
+        referee3.addRole(Role.REFEREE);
+        referee3.addRole(Role.REFEREEMANAGER);
+        referee3.setLicense("A");
+        referee3.setClub(club1);
+        userWithRolesRepository.save(referee3);
+
+        Referee referee4 = new Referee("copenhagen", passwordUsedByAll, "ref4@a.dk","firstname2", "lastname10");
+        referee4.addRole(Role.REFEREE);
+        referee4.addRole(Role.REFEREEMANAGER);
+        referee4.setLicense("A");
+        referee4.setClub(club2);
+        userWithRolesRepository.save(referee4);
 
 
 

@@ -25,6 +25,7 @@ public class RefereeDTO {
     String bankInformation;
 
     List<Role> roles;
+    String clubName;
 
     public RefereeDTO(String username, String password, String email, String firstname, String lastname, String position, String bankInformation) {
         this.username = username;
@@ -47,5 +48,6 @@ public class RefereeDTO {
         this.license = r.getLicense().toString();
         this.bankInformation = r.getBankInformation();
         this.roles = r.getRoles();
+        this.clubName = r.getClub().getName();
     }
 }
