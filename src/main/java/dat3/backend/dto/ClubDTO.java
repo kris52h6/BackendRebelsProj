@@ -19,14 +19,14 @@ public class ClubDTO {
     String name;
     String address;
     String email;
-    List<String> teams;
+    List<Integer> teams;
     List<String> referees;
 
     public ClubDTO(Club c) {
         this.name = c.getName();
         this.address = c.getAddress();
         this.email = c.getEmail();
-        this.teams = c.getTeams().stream().map(team -> team.getName()).toList();
+        this.teams = c.getTeams().stream().map(team -> team.getId()).toList();
         this.referees = c.getReferees().stream().map(referee -> referee.getUsername()).toList();
     }
 
