@@ -36,10 +36,6 @@ public class ClubController {
         return clubService.getClubByName(clubName);
     }
 
-    @GetMapping("/user/{username}")
-    public ClubDTO getClubFromUsername(@PathVariable String username){
-        return  clubService.getClubFormUsername(username);
-    }
 
 
 

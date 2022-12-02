@@ -46,16 +46,4 @@ public class ClubService {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Club not found"));
     }
 
-
-    public ClubDTO getClubFormUsername(String refereeName){
-        List<Club> allClubs  = clubRepository.findAll();
-        for(Club club : allClubs){
-            for(Referee ref: club.getReferees()){
-                if(ref.getUsername().equals(refereeName)){
-                    return new ClubDTO(club);
-                }
-            }
-        }
-        return null;
-    }
 }
