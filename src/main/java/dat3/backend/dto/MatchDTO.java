@@ -22,6 +22,9 @@ public class MatchDTO
     int homeTeamId;
     int awayTeamId;
     int refereeTeamId;
+    String homeTeamImg;
+    String awayTeamImg;
+    String refereeTeamImg;
     LocalDateTime startTime;
     String divisionName;
 
@@ -41,6 +44,9 @@ public class MatchDTO
         this.acceptedReferees = match.getAcceptedReferees().stream().map(accepted -> accepted.getUsername()).toList();
         this.homeTeamId = match.getHomeTeam().getId();
         this.awayTeamId = match.getAwayTeam().getId();
+        this.homeTeamImg = match.getHomeTeam().getClub().getImageString();
+        this.awayTeamImg = match.getAwayTeam().getClub().getImageString();
+        this.refereeTeamImg = match.getRefereeTeam().getClub().getImageString();
         this.refereeTeamId = match.getRefereeTeam().getId();
         this.startTime = match.getStartTime();
         this.divisionName = match.getDivision().getName();

@@ -22,6 +22,7 @@ public class Club {
     String name;
     String address;
     String email;
+    String imageString;
 
     @OneToMany
     List<Team> teams = new ArrayList<>();
@@ -35,6 +36,13 @@ public class Club {
         this.name = name.toLowerCase();
         this.address = address;
         this.email = email;
+    }
+
+    public Club(String name, String adress, String email, String imageString) {
+        this.name = name.toLowerCase();
+        this.address = address;
+        this.email = email;
+        this.imageString = imageString;
     }
 
     public void addTeam(Team team){

@@ -21,6 +21,8 @@ public class ClubDTO {
     String email;
     List<Integer> teams;
     List<String> referees;
+    String imageString;
+
 
     public ClubDTO(Club c) {
         this.name = c.getName();
@@ -28,6 +30,7 @@ public class ClubDTO {
         this.email = c.getEmail();
         this.teams = c.getTeams().stream().map(team -> team.getId()).toList();
         this.referees = c.getReferees().stream().map(referee -> referee.getUsername()).toList();
+        this.imageString = c.getImageString();
     }
 
 }

@@ -192,9 +192,9 @@ public class SetupDevUsers implements ApplicationRunner {
         matchRepository.save(match20);
         matchRepository.save(match1);
 
-        Club club1 = new Club("Herlev Rebels", "Club1Sted", "club@club1.com");
-        Club club2 = new Club("Copenhagen Towers", "Club2Sted", "club@club2.com");
-        Club club3 = new Club("Søllerød Golddiggers", "Club3Sted", "club@club3.com");
+        Club club1 = new Club("Herlev Rebels", "Club1Sted", "club@club1.com", "rebels");
+        Club club2 = new Club("Copenhagen Towers", "Club2Sted", "club@club2.com", "towers");
+        Club club3 = new Club("Søllerød Golddiggers", "Club3Sted", "club@club3.com", "golddiggers");
         Club club4 = new Club("Club4", "Club4Sted", "club@club4.com");
         Club club5 = new Club("Club5", "Club5Sted", "club@club5.com");
 
