@@ -115,5 +115,9 @@ public class UserService {
     }
 
 
-
+    public RefereeDTO getMatches(String username) {
+        Referee referee = refereeRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
+        return new RefereeDTO(referee, true);
+    }
 }

@@ -1,6 +1,7 @@
 package dat3.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import dat3.backend.entity.Match;
 import dat3.backend.entity.Referee;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -26,6 +28,8 @@ public class RefereeDTO {
 
     List<Role> roles;
     String clubName;
+
+    List<MatchDTO> matches;
 
     public RefereeDTO(String username, String password, String email, String firstname, String lastname, String position, String bankInformation) {
         this.username = username;
@@ -51,4 +55,9 @@ public class RefereeDTO {
         if(!(r.getClub() == null)){
         this.clubName = r.getClub().getName();
     }}
+
+    public RefereeDTO(Referee r, boolean getMatches) {
+        this.username = r.getUsername();
+        this.matches = r.getMatches().stream().map(match -> new MatchDTO(match, true)).collect(Collectors.toList());
+    }
 }
