@@ -107,10 +107,10 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(referee5);
 
 
-        Division division1 = new Division("U13",90,100, "LOL");
-        Division division2 = new Division("U15",90,100, "LOL");
-        Division division3 = new Division("U17",90,100, "LOL");
-        Division division4 = new Division("U19",90,100, "LOL");
+        Division division1 = new Division("U13",90,100, "LOL",2);
+        Division division2 = new Division("U15",90,100, "LOL",3);
+        Division division3 = new Division("U17",90,100, "LOL",4);
+        Division division4 = new Division("U19",90,100, "LOL",5);
 
         divisionRepository.save(division1);
         divisionRepository.save(division2);

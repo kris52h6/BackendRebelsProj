@@ -27,6 +27,7 @@ public class MatchDTO
     String refereeTeamImg;
     LocalDateTime startTime;
     String divisionName;
+    int numberOfReferees;
 
     public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam, Team refereeTeam) {
         return new Match(
@@ -50,6 +51,7 @@ public class MatchDTO
         this.refereeTeamId = match.getRefereeTeam().getId();
         this.startTime = match.getStartTime();
         this.divisionName = match.getDivision().getName();
+        this.numberOfReferees = match.getDivision().getNumberOfReferees();
         if (includeAll){
             this.id = match.getId();
         }

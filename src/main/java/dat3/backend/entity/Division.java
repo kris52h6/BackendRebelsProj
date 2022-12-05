@@ -26,11 +26,13 @@ public class Division {
     List<Team> teams;
     @OneToMany
     List<Match> matches;
+    int numberOfReferees;
 
-    public Division(String name, int matchTime, int commission, String license) {
+    public Division(String name, int matchTime, int commission, String license, int numberOfReferees) {
         this.name = name;
         this.matchTime = matchTime;
         this.commission = commission;
         this.license = license;
+        this.numberOfReferees = numberOfReferees;
     }
 }

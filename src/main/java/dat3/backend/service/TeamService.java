@@ -27,8 +27,10 @@ public class TeamService
                 .toList();
     }
 
-    public TeamDTO getTeamById(int id){
+    public TeamDTO getTeamById(int id)
+    {
         Team team = teamRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Team not found"));
         return new TeamDTO(team);
     }
+
 }
