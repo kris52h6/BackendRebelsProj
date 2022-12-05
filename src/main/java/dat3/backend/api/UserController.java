@@ -73,6 +73,4 @@ public class UserController {
     public RefereeDTO getMatches(@PathVariable String username){
         return userService.getMatches(username);
     }
-
-
 }

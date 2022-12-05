@@ -28,7 +28,6 @@ public class RefereeDTO {
 
     List<Role> roles;
     String clubName;
-
     List<MatchDTO> matches;
 
     public RefereeDTO(String username, String password, String email, String firstname, String lastname, String position, String bankInformation) {
@@ -59,5 +58,7 @@ public class RefereeDTO {
     public RefereeDTO(Referee r, boolean getMatches) {
         this.username = r.getUsername();
         this.matches = r.getMatches().stream().map(match -> new MatchDTO(match, true)).collect(Collectors.toList());
+
+
     }
 }
