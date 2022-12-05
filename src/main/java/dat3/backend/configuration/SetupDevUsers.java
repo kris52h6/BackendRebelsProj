@@ -189,6 +189,13 @@ public class SetupDevUsers implements ApplicationRunner {
         matchRepository.save(match20);
         match20.setAcceptedReferees(acceptedReferees);
         match1.setAcceptedReferees(acceptedReferees);
+
+        referee1.addAcceptedMatch(match1);
+        referee2.addAcceptedMatch(match1);
+
+        referee1.addAcceptedMatch(match20);
+        referee2.addAcceptedMatch(match20);
+
         matchRepository.save(match20);
         matchRepository.save(match1);
 

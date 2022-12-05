@@ -19,7 +19,7 @@ public class Referee extends UserWithRoles {
 
     @Column(name = "kampe")
     @ManyToMany()
-    List<Match> matches;
+    List<Match> matches = new ArrayList<>();
 
     String position;
 
@@ -52,5 +52,9 @@ public class Referee extends UserWithRoles {
             case "D" -> this.license = License.D;
             case "I" -> this.license = License.I;
         }
+    }
+
+    public void addAcceptedMatch(Match match){
+        matches.add(match);
     }
 }
