@@ -4,6 +4,9 @@ package dat3.backend.service;
 import dat3.backend.dto.RefereeDTO;
 import dat3.backend.dto.UsernameDTO;
 import dat3.backend.entity.Referee;
+import dat3.backend.entity.SignUp;
+import dat3.backend.repository.MatchRepository;
+import dat3.backend.repository.SignUpRepository;
 import dat3.security.dto.LoginRequest;
 import dat3.security.dto.UserWithRolesRequest;
 import dat3.security.entity.Role;
@@ -23,9 +26,13 @@ public class UserService {
     UserWithRolesRepository userWithRolesRepository;
     RefereeRepository refereeRepository;
 
-    public UserService(UserWithRolesRepository userWithRolesRepository, RefereeRepository refereeRepository){
+    SignUpRepository signUpRepository;
+
+
+    public UserService(UserWithRolesRepository userWithRolesRepository, RefereeRepository refereeRepository, SignUpRepository signUpRepository){
         this.userWithRolesRepository = userWithRolesRepository;
         this.refereeRepository = refereeRepository;
+        this.signUpRepository = signUpRepository;
     }
 
     public UsernameDTO addReferee(RefereeDTO refereeDTO) {
@@ -115,9 +122,6 @@ public class UserService {
     }
 
 
-    public RefereeDTO getMatches(String username) {
-        Referee referee = refereeRepository.findById(username).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
-        return new RefereeDTO(referee, true);
-    }
+
+
 }

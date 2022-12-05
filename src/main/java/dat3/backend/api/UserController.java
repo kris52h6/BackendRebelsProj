@@ -69,8 +69,6 @@ public class UserController {
         userService.makeAdmin(username);
     }
 
-    @GetMapping("/matches/{username}")
-    public RefereeDTO getMatches(@PathVariable String username){
-        return userService.getMatches(username);
-    }
+
+
 }

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -107,5 +108,19 @@ public class MatchService
         Division divisionFound = divisionRepository.findById(divisionId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Division not found"));
         return matchRepository.findAllByDivision(divisionFound).stream().map(m -> new MatchDTO(m, true)).toList();
+    }
+
+    public List<MatchDTO> getAllAcceptedMatches(String username){
+        Referee referee = refereeRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "Referee not found"));
+
+        return  referee.getMatches().stream().map(match -> new MatchDTO(match,true)).toList();
+    }
+
+    public List<MatchDTO> getAllSignUpMatches(String username){
+        List<SignUp> signUps = signUpRepository.findAllByReferee_Username(username);
+        List<Match> matches = signUps.stream().map(signUp -> matchRepository.findById(signUp.getMatch().getId()).orElseThrow()).toList();
+        List<MatchDTO> matchDTOS = matches.stream().map(match -> new MatchDTO(match,true)).toList();
+        return matchDTOS;
     }
 }

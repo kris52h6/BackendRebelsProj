@@ -57,5 +57,16 @@ public class MatchController
     List<MatchDTO> getAllMatchesByDivision(@PathVariable String divisionName) {
         return matchService.getAllMatchesByDivisionId(divisionName);
     }
+
+    @GetMapping("/accepted/{username}")
+    public List<MatchDTO> getMatches(@PathVariable String username){
+        return matchService.getAllAcceptedMatches(username);
+    }
+
+    @GetMapping("/signups/{username}")
+    public List<MatchDTO> getSignupMatches(@PathVariable String username){
+        return matchService.getAllSignUpMatches(username);
+    }
+
 }
 

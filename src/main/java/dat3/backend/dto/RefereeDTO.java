@@ -55,7 +55,7 @@ public class RefereeDTO {
         this.clubName = r.getClub().getName();
     }}
 
-    public RefereeDTO(Referee r, boolean getMatches) {
+    public RefereeDTO(Referee r, boolean isSignup) {
         this.username = r.getUsername();
         this.matches = r.getMatches().stream().map(match -> new MatchDTO(match, true)).collect(Collectors.toList());
 
