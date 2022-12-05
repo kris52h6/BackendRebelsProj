@@ -90,6 +90,9 @@ public class MatchService
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Referee not found"));
             SignUp foundSignup = signUpRepository.findById(patchRefereeDTO.getSignupId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Signup not found"));
+            if (foundMatch.getAcceptedReferees().size() == foundMatch.getDivision().getNumberOfReferees()){
+                return false;
+            }
             foundMatch.addReferee(foundReferee);
             signUpRepository.delete(foundSignup);
             matchRepository.save(foundMatch);
