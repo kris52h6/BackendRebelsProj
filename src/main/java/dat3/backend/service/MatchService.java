@@ -33,7 +33,7 @@ public class MatchService {
     public MatchDTO getMatchById(int id){
         Match foundMatch = matchRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found"));
-        return new MatchDTO(foundMatch, false);
+        return new MatchDTO(foundMatch, true);
     }
 
     public List<MatchDTO> getAllMatches() {
