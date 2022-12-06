@@ -31,13 +31,13 @@ public class Referee extends UserWithRoles {
     @ManyToOne
     Club club;
 
-    public Referee(String username, String password, String email, String firstname, String lastname,
-                    String position, String bankInformation )
-    {
+    public Referee(String username, String password,
+                   String email, String firstname,
+                   String lastname, String position,
+                   String bankInformation ) {
         super(username, password, email, firstname, lastname);
         this.position = position;
         this.bankInformation = bankInformation;
-
     }
 
     public  Referee(String username, String password, String email, String firstname, String lastname){
@@ -53,7 +53,6 @@ public class Referee extends UserWithRoles {
             case "I" -> this.license = License.I;
         }
     }
-
     public void addAcceptedMatch(Match match){
         matches.add(match);
     }

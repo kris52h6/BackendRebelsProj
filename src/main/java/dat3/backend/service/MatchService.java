@@ -12,12 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class MatchService
-{
+public class MatchService {
     MatchRepository matchRepository;
     TeamRepository teamRepository;
     SignUpRepository signUpRepository;
@@ -119,7 +117,6 @@ public class MatchService
     public List<MatchDTO> getAllSignUpMatches(String username){
         List<SignUp> signUps = signUpRepository.findAllByReferee_Username(username);
         List<Match> matches = signUps.stream().map(signUp -> matchRepository.findById(signUp.getMatch().getId()).orElseThrow()).toList();
-        List<MatchDTO> matchDTOS = matches.stream().map(match -> new MatchDTO(match,true)).toList();
-        return matchDTOS;
+        return matches.stream().map(match -> new MatchDTO(match,true)).toList();
     }
 }

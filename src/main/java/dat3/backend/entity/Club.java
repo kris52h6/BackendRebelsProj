@@ -1,6 +1,5 @@
 package dat3.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,14 +22,11 @@ public class Club {
     String address;
     String email;
     String imageString;
-
     @OneToMany
     List<Team> teams = new ArrayList<>();
 
     @OneToMany
     List<Referee> referees = new ArrayList<>();
-
-
 
     public Club(String name, String address, String email) {
         this.name = name.toLowerCase();
@@ -38,7 +34,7 @@ public class Club {
         this.email = email;
     }
 
-    public Club(String name, String adress, String email, String imageString) {
+    public Club(String name, String address, String email, String imageString) {
         this.name = name.toLowerCase();
         this.address = address;
         this.email = email;

@@ -9,12 +9,9 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("api/signups")
-public class SignUpController
-{
+public class SignUpController {
     SignUpService signUpService;
-
-    public SignUpController(SignUpService signUpService)
-    {
+    public SignUpController(SignUpService signUpService) {
         this.signUpService = signUpService;
     }
 
