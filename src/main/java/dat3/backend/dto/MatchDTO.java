@@ -31,6 +31,7 @@ public class MatchDTO
     LocalDateTime startTime;
     String divisionName;
     int numberOfReferees;
+    String address;
 
     public static Match getMatchEntity(MatchDTO matchDTO, Team homeTeam, Team awayTeam, Team refereeTeam) {
         return new Match(
@@ -60,6 +61,7 @@ public class MatchDTO
             this.homeTeamName = match.getHomeTeam().getClub().getName();
             this.awayTeamName = match.getAwayTeam().getClub().getName();
             this.refereeTeamName = match.getRefereeTeam().getClub().getName();
+            this.address = match.getHomeTeam().getClub().getAddress();
         }
     }
 }
