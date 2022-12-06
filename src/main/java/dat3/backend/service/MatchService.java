@@ -55,7 +55,6 @@ public class MatchService {
         try {
             Match match = matchRepository.findById(matchId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found"));
-            System.out.println(match);
             matchRepository.delete(match);
             return true;
         } catch (Exception e) {

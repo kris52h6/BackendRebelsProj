@@ -30,7 +30,6 @@ public class MatchController
 
     @GetMapping("/accepted")
     List<MatchDTO> getAllAcceptedSignUps(){
-        System.out.println(matchService.getAllAcceptedReferees().toString());
         return matchService.getAllAcceptedReferees();
     }
 
