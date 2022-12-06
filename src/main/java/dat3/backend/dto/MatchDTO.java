@@ -22,6 +22,9 @@ public class MatchDTO
     int homeTeamId;
     int awayTeamId;
     int refereeTeamId;
+    String homeTeamName;
+    String awayTeamName;
+    String refereeTeamName;
     String homeTeamImg;
     String awayTeamImg;
     String refereeTeamImg;
@@ -54,6 +57,9 @@ public class MatchDTO
         this.numberOfReferees = match.getDivision().getNumberOfReferees();
         if (includeAll){
             this.id = match.getId();
+            this.homeTeamName = match.getHomeTeam().getClub().getName();
+            this.awayTeamName = match.getAwayTeam().getClub().getName();
+            this.refereeTeamName = match.getRefereeTeam().getClub().getName();
         }
     }
 }

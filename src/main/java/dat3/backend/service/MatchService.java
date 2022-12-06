@@ -41,6 +41,7 @@ public class MatchService
     public List<MatchDTO> getAllMatches() {
         return matchRepository.findAll()
                 .stream()
+                .sorted((o1,o2) -> o1.getStartTime().compareTo(o2.getStartTime()))
                 .map(m -> new MatchDTO(m, true))
                 .toList();
     }
