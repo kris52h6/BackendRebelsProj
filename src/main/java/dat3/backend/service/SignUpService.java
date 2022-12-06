@@ -43,18 +43,41 @@ public class SignUpService
         List<SignUp> foundAcceptedSignUps = si
     }*/
 
-    public boolean addSignUp(SignUpDTO signUpDTO) {
-        try {
+    public SignUpDTO addSignUp(SignUpDTO signUpDTO) {
             Match match = matchRepository.findById(signUpDTO.getMatchId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found"));
             Referee referee = refereeRepository.findById(signUpDTO.getRefereeUsername())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Referee not found"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not logged in"));
+            if(!referee.getClub().getName().equals(match.getRefereeTeam().getClub().getName())) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not a member of the refeering club");
+            }
+
+            List<SignUp> signUps = match.getSignUps();
+            for (int i = 0; i < signUps.size(); i++) {
+                if(signUps.get(i).getReferee() == referee) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Already signed up");
+                }
+            }
+
+            if(match.getAcceptedReferees().contains(referee)) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Already signed up");
+            }
+
             String position = signUpDTO.getPosition();
             SignUp createNewSignup = signUpDTO.getSignUpEntiy(match, referee, position);
             signUpRepository.save(createNewSignup);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+            return new SignUpDTO(createNewSignup, true);
     }
+
+    public boolean checkIfSignedUp(List<SignUp> signUps, Referee referee) {
+        for (int i = 0; i < signUps.size(); i++) {
+            if(signUps.get(i).getReferee() == referee) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
+
+

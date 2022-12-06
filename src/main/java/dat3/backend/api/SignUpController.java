@@ -29,7 +29,7 @@ public class SignUpController
     }
 
     @PostMapping()
-    public boolean addSignUp(@RequestBody SignUpDTO signUpDTO) {
+    public SignUpDTO addSignUp(@RequestBody SignUpDTO signUpDTO) {
         return signUpService.addSignUp(signUpDTO);
     }
 }

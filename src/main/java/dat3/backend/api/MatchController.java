@@ -39,7 +39,7 @@ public class MatchController
     }
 
     @PatchMapping()
-    boolean addAccepted(@RequestBody PatchRefereeDTO patchRefereeDTO){
+    PatchRefereeDTO addAccepted(@RequestBody PatchRefereeDTO patchRefereeDTO){
         return matchService.addAccepted(patchRefereeDTO);
     }
 

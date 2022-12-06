@@ -67,11 +67,11 @@ public class MatchService
     public boolean addMatch(MatchDTO matchDTO) {
         try {
             Team homeTeam = teamRepository.findById(matchDTO.getHomeTeamId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Home team not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Hjemmehold ikke fundet"));
             Team awayTeam = teamRepository.findById(matchDTO.getAwayTeamId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Away team not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Udehold ikke fundet"));
             Team refereeTeam = teamRepository.findById(matchDTO.getRefereeTeamId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Referee team not found"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dommerhold ikke fundet"));
 
             Match createNewMatch = matchDTO.getMatchEntity(matchDTO, homeTeam, awayTeam, refereeTeam);
             matchRepository.save(createNewMatch);
@@ -82,26 +82,24 @@ public class MatchService
         }
     }
 
-    public boolean addAccepted(PatchRefereeDTO patchRefereeDTO){
-        try
-        {
-            Match foundMatch = matchRepository.findById(patchRefereeDTO.getMatchId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "match not found"));;
-            Referee foundReferee = refereeRepository.findById(patchRefereeDTO.getUsername())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Referee not found"));
-            SignUp foundSignup = signUpRepository.findById(patchRefereeDTO.getSignupId())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Signup not found"));
-            if (foundMatch.getAcceptedReferees().size() == foundMatch.getDivision().getNumberOfReferees()){
-                return false;
-            }
-            foundMatch.addReferee(foundReferee);
-            signUpRepository.delete(foundSignup);
-            matchRepository.save(foundMatch);
-            return true;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
+    public PatchRefereeDTO addAccepted(PatchRefereeDTO patchRefereeDTO){
+        Match foundMatch = matchRepository.findById(patchRefereeDTO.getMatchId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Kampen blev ikke fundet"));;
+        Referee foundReferee = refereeRepository.findById(patchRefereeDTO.getUsername())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dommeren blev ikke fundet"));
+        SignUp foundSignup = signUpRepository.findById(patchRefereeDTO.getSignupId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tilmeldingen blev ikke fundet"));
+        if (foundMatch.getAcceptedReferees().size() == foundMatch.getDivision().getNumberOfReferees()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dommerpositionerne er udfyldt");
         }
+        if (foundMatch.getAcceptedReferees().contains(foundReferee)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dommeren er allerede godkendt");
+        }
+
+        foundMatch.addReferee(foundReferee);
+        signUpRepository.delete(foundSignup);
+        matchRepository.save(foundMatch);
+        return new PatchRefereeDTO(foundMatch.getId(), foundReferee.getUsername(), foundSignup.getId());
     }
 
     public List<MatchDTO> getAllMatchesByDivisionId(String divisionId) {
