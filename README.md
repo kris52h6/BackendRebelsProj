@@ -1,1 +1,1 @@
-Rebels backend projekt
+# Computer Science KEA - 3rd semester exam project.
